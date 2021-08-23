@@ -4,6 +4,7 @@
 
 ### Eclipse ###
 .metadata
+.sonarlint
 bin/
 tmp/
 *.tmp
