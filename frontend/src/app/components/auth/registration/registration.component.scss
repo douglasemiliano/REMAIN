@@ -1,0 +1,25 @@
+
+    
+main{
+   
+    padding: 5% 20%;
+
+    h1 {
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex; 
+        justify-content: center; 
+        align-content: space-between;
+    }
+
+    .registration {
+        background-color: var(--primary);
+        margin-left: 2rem;
+        color: var(--white)
+    }
+
+
+}
+
