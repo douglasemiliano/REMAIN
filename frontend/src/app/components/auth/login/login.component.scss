@@ -9,7 +9,7 @@
 }
 
 .signin {
-    background-color: var(--primary);
+    background-color: var(--primary-color);
     color: var(--white);
     height: 4rem;
     margin-top: 2rem;
@@ -40,7 +40,7 @@
 
     a {
         cursor: pointer; 
-        color: var(--primary);
+        color: var(--primary-color);
     }
 
     a:hover {
@@ -110,7 +110,7 @@
 
 .left-strip{
 
-    background-color: var(--primary); 
+    background-color: var(--primary-color); 
     height: 100vh;
 
     .row {
