@@ -1,0 +1,139 @@
+@media screen and (max-width: 769px) {
+    
+    main {
+        display: flex;
+        flex-direction: column-reverse;
+        margin-top: 2rem;
+    }
+  
+}
+
+.signin {
+    background-color: var(--primary-color);
+    color: var(--white);
+    height: 4rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    height: 4rem;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 530px;
+  padding: 15px;
+  margin: auto;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+
+  .logo {
+    width: 20rem; 
+    margin-bottom: 3rem;
+  }
+
+  .have-not-account{
+    font-size: 14pt; 
+    margin-top: 2rem;
+
+    a {
+        cursor: pointer; 
+        color: var(--primary-color);
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+  }
+  .divider {
+    text-align: center; 
+    margin: 2rem 0;
+    font-size: 16pt;
+    color: var(--gray);
+  }
+
+  .text-muted {
+    margin-top: 2rem;
+  }
+
+  #google-button{
+    border-color: var(--gray);
+      img {
+        height: 2rem;
+      }
+
+      span {
+        margin-left: 0.5rem; 
+        font-size: 16pt; 
+        color: var(--gray);
+      }
+  }
+
+  #google-button:hover{
+      background-color:var(--gray);
+      span {
+          color: var(--white);
+        }
+  }
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.g-signin2,
+.g-signin2 .abcRioButton {
+  display: block;
+  margin: 20px auto 0 auto;
+  text-align: center;
+}
+
+
+.left-strip{
+
+    background-color: var(--primary-color); 
+    height: 100vh;
+
+    .row {
+        height: 100vh; 
+        display: flex; 
+        justify-content: space-evenly; 
+        align-items: center; 
+        flex-direction: column; 
+        padding-top: 3rem;
+
+        .phrase{
+            height: 15%; 
+            width: auto;
+        }
+
+        .illustration{
+            height: 50%; 
+            width: auto;
+        }
+    }
+
+
+
+
+       
+}
