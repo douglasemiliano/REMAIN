@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    
+    <main class="row">
+        
+        <aside class="col-md-4 left-strip">
+            <div class="row">
+                    <img src="https://i.imgur.com/fA5azsv.png" class="phrase">           
+                    <img src="https://i.imgur.com/3LcPNR9.png" class="illustration">
+            </div>
+        </aside>
+
+        <section class="col-md-8 col-12 form-signin"> 
+            <img  class="logo" src="https://i.imgur.com/3onBlhj.png">
+            <div class="container-fluid">
+                <form [formGroup]="form">
+                    <div class="form-floating">
+                        <input formControlName="email" type="email" class="form-control form-control-lg" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating">
+                        <input formControlName="password" type="password" class="form-control form-control-lg" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Senha</label>
+                    </div>
+                </form>
+                <button class="w-100 btn btn-lg signin" type="submit" (click)="onSubmit()" [disabled]="!form.valid">Vamos lá!</button>
+                <p class="have-not-account" >Não possui conta? <a (click)="goToRegistration()">clique aqui para se cadastrar!</a></p>
+                <div class="container-fluid divider">
+                    <div class="row">
+                        <div class="col-5"><hr/></div>
+                        <div class="col-2">Ou</div>
+                        <div class="col-5"><hr/></div>
+                    </div>
+                </div>
+                <button id="google-button" class="btn btn-block btn-light btn-outline-primary">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/600px-Google_%22G%22_Logo.svg.png" alt="Logo do Google" /> 
+                    <span>
+                        Entre com o Google
+                    </span>
+                </button>
+                <p class="mb-3 text-muted">&copy; 2021–2022</p>
+            </div>
+        </section>
+
+    </main> 
+
+</div>
+    

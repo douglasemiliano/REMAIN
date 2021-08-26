@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,7 +15,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +38,14 @@ export class RegistrationComponent implements OnInit {
     console.log(this.form?.value);
     this.form.reset();
     this.showToaster();
+    this.goToLogin();
   }
 
-  showToaster(){
+  showToaster(): void{
     this.toastr.success('Cadastro realizado com sucesso!', 'Sucesso', {easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 3000});
-}
+  }
+  goToLogin(): void {
+    this.router.navigate(['login']);
+  }
 
 }
