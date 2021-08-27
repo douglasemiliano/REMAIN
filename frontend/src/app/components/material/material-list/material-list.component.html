@@ -1,0 +1,59 @@
+
+
+
+<div class="container-fluid" style="padding: 3rem 2rem;">
+
+    <div  style="color:var(--primary-color); font-weight: bolder; margin-top: 3rem;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">Início</li>
+              <li class="breadcrumb-item active" aria-current="page">Materiais</li>
+            </ol>
+          </nav>
+    </div>
+
+
+
+    <div class="container-fluid" style="padding: 1.2rem 3rem; height: 6rem; border: solid 1px; border-color: rgb(245, 245, 245); margin: 3rem 0; -webkit-box-shadow: 0 8px 6px -6px #999; -moz-box-shadow: 0 8px 6px -6px #999; box-shadow: 0 8px 6px -6px #999; display: flex; justify-content: space-between;">  
+
+            <div class="form-floating">
+                <input  type="email" class="form-control form-control-lg" id="floatingInput" placeholder="Ensino Básico">
+                <label for="floatingInput">Pesquisar</label>
+            </div>
+
+            <div class="nav-item">
+                <button class="btn btn-block btn-lg" style=" height:100%; background-color: var(--primary-color); color: var(--white); font-weight: bold;">
+                    Compartilhe seu material
+                </button>
+            </div>
+    </div>
+
+    <div class="row">
+        <div *ngFor="let item of materials" class="col-3" style="margin-bottom: 3rem;">
+            <div class="card" style="width: 23rem; height: 30rem;">
+                <img class="card-img-top" style="height: 12rem; width: auto;" [src]="item.image" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{item.title}}</h4>
+                  <p class="card-text" style="font-size: 16pt; margin-top: 1.5rem;">{{item.description}}</p>
+                </div>
+                <div class="card-footer" style="background-color: white;">
+                    <button class="btn btn-block btn-lg" style="background-color: var(--primary-color); color: var(--white); font-weight: bold;">Visualizar Conteúdo</button>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <div class="nav justify-content-center" style="padding-top: 0.6rem; font-size: 16pt;">
+                <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+        </div>
+
+</div>
+
+
+
+    
+
+
