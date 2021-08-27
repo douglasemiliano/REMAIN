@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Page Title</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+<script src="main.js"></script>
+</head>
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDf9V4AvrN11dI2R1uH-_iITOB3QqX0Xs0",
+    authDomain: "projetoteste-e48a4.firebaseapp.com",
+    projectId: "projetoteste-e48a4",
+    storageBucket: "projetoteste-e48a4.appspot.com",
+    messagingSenderId: "558438638843",
+    appId: "1:558438638843:web:84cd794c07f1606db4bc5e"
+  };
+
+  // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+</script>
+
+<body>
+	<label>Email</label>
+	<input id="email" type="text" />
+	<label>Password</label>
+	<input id="password" type="password" />
+	<button onclick="login()">Login</button>
+</body>
+<script>
+    function login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(document.getElementById("email").value, document.getElementById("password").value)
+        .catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+        });
+    }
+  </script>
+</html>
