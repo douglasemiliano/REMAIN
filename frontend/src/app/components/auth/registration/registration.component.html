@@ -1,52 +1,77 @@
+<div class="container-fluid">
+    <main class="row">
+        <div class="col-md-4 col-0" style="background-color: var(--primary-color); height: 100vh;">
+            <div class="row" style="height: 100vh; display: flex; justify-content: space-evenly; align-items: center; flex-direction: column; padding-top: 3rem;">
+                
+                <img src="https://i.imgur.com/fA5azsv.png" style="height: 15%; width: auto;">
+           
+          
+                <img src="https://i.imgur.com/3LcPNR9.png" style="height: 50%; width: auto;">
+           
+
+        </div>
+        </div>
+        <div class="col-md-8 col-12 form-signin">
+            <h1>Hora do Cadastro!</h1>
+            <br>
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome</label>
+                            <input formControlName="firstName" type="text" class="form-control form-control-lg" placeholder="Juriscreiton" aria-describedby="emailHelp">
+                          </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Sobrenome</label>
+                            <input formControlName="lastName" type="email" class="form-control form-control-lg" placeholder="Souza" aria-describedby="emailHelp">
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Data de nascimento</label>
+                            <input formControlName="birthDate" type="date" class="form-control form-control-lg"  aria-describedby="emailHelp">
+                          </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Telefone</label>
+                            <input formControlName="phone" type="phone" class="form-control form-control-lg" placeholder="(83) 99999-1234" aria-describedby="emailHelp">
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input formControlName="email" type="email" class="form-control form-control-lg" placeholder="email@email.com" aria-describedby="emailHelp">
+                          </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Senha</label>
+                            <input formControlName="password" type="password" class="form-control form-control-lg" placeholder="Insira sua senha" aria-describedby="emailHelp">
+                          </div>
+                    </div>
+                </div>
+            </form>
+            <div class="buttons">
+                <button type="button" class="btn btn-light btn-lg" (click)="goToLogin()">Cancelar</button>
+                <button type="button" class="btn registration btn-lg" (click)="onSubmit()" [disabled]="!form.valid">Cadastrar</button>       
+            </div>          
+        </div>
+    </main> 
+
+</div>
+    
+
+
+
+
 <main class="container">
-    <h1 class="title is-3">Hora do Cadastro!</h1>
-    <form [formGroup]="form">
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nome</label>
-                    <input formControlName="firstName" type="text" class="form-control" placeholder="Juriscreiton" aria-describedby="emailHelp">
-                  </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Sobrenome</label>
-                    <input formControlName="lastName" type="email" class="form-control" placeholder="Souza" aria-describedby="emailHelp">
-                  </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Data de nascimento</label>
-                    <input formControlName="birthDate" type="date" class="form-control"  aria-describedby="emailHelp">
-                  </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Telefone</label>
-                    <input formControlName="phone" type="phone" class="form-control" placeholder="(83) 99999-1234" aria-describedby="emailHelp">
-                  </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input formControlName="email" type="email" class="form-control" placeholder="email@email.com" aria-describedby="emailHelp">
-                  </div>
-            </div>
-            <div class="col-md-6 col-12">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Senha</label>
-                    <input formControlName="password" type="password" class="form-control" placeholder="Insira sua senha" aria-describedby="emailHelp">
-                  </div>
-            </div>
-        </div>
-    </form>
-    <div class="buttons">
-        <button type="button" class="btn btn-light">Cancelar</button>
-        <button type="button" class="btn registration" (click)="onSubmit()" [disabled]="!form.valid">Cadastrar</button>       
-    </div>          
+   
 </main>
         
