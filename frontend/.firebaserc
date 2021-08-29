@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "remain-5085a": {
+      "hosting": {
+        "frontend": [
+          "remain-5085a"
+        ]
+      }
+    }
+  }
+}

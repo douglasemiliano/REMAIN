@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
     console.log(this.form.value);    
   }
 
+  loginGoogle(): void {
+    this.authService.login();
+  }
+
   createForm(): void{
     this.form = this.fb.group({
       email: new FormControl('', [Validators.required]),
