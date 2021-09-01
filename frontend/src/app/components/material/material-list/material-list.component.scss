@@ -1,0 +1,30 @@
+ngb-pagination ::ng-deep a {
+    color: var(--primary-color) !important;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: var(--white);
+    background-color: var(--primary-color);
+    color: var(--white) !important;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+
+.botao :hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.card {
+  -webkit-box-shadow: 8px 8px 6px -6px #999;
+  -moz-box-shadow: 8px 8px 6px -6px #999;
+  box-shadow: 6px 8px 6px -6px #999;
+  
+
+}

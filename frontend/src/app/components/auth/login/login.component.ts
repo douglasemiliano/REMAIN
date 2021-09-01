@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private toastr: ToastrService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -26,13 +28,14 @@ export class LoginComponent implements OnInit {
   }
 
   showToaster(): void{
-    this.toastr.success('Login realizado com sucesso!', 'Sucesso', {easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 3000});
+    this.toastr.success('Login realizado com sucesso!', 'Sucesso', {easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 2000});
   }
 
   onSubmit(): void{
-    this.router.navigate(['']);
+    this.router.navigate(['materiais']);
     this.showToaster();
-    console.log(this.form.value)    
+    this.authService.setLoginState(true);
+    console.log(this.form.value);    
   }
 
   createForm(): void{
