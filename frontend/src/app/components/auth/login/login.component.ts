@@ -32,10 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void{
-    this.router.navigate(['materiais']);
-    this.showToaster();
-    this.authService.setLoginState(true);
     console.log(this.form.value);    
+    this.authService.loginWithEmail(this.form.get('email')?.value, this.form.get('password')?.value);
+  }
+
+  loginGoogle(): void {
+    this.authService.login();
   }
 
   createForm(): void{

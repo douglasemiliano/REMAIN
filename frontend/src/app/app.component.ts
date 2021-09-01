@@ -11,10 +11,10 @@ import { AuthService } from './components/auth/auth.service';
     trigger('openClose', [
       // ...
       state('open', style({
-        width:'30rem',
+        width: '30rem',
       })),
       state('closed', style({
-        width:'8rem',
+        width: '8rem',
       })),
       transition('open => closed', [
         animate('0.1s')
@@ -29,18 +29,30 @@ export class AppComponent {
   title = 'frontend';
   logged = false;
   isOpen = true;
+  user: any
 
-  constructor(private authService: AuthService, 
-              private router: Router){
+
+  constructor(private authService: AuthService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
-    this.authService.showNavEmitter.subscribe( data => {
-      this.logged = data;
-    });
-    console.log(this.logged);
-    this.setLoginState()
+    this.login();
   }
+
+  login(): void {
+    if (localStorage.length === 0) {
+      this.router.navigate(['login'])
+      this.authService.loginEmitter.subscribe(data => {
+        this.user = this.authService.getUser();
+        this.logged = data;
+      })
+    } else {
+      this.logged = true;
+      this.router.navigate(['materiais'])
+    }
+  }
+
 
   setLoginState(): void {
     this.logged = this.authService.isLogged();
@@ -49,19 +61,21 @@ export class AppComponent {
   logOut(): void {
     this.logged = false;
     this.router.navigate(['login'])
+    localStorage.clear();
+    location.reload();
   }
 
   resizeSidebar(): void {
     this.toggle();
-    if(document.getElementById("sidebar")?.style.width === "30rem"){
-      for (let i = 0 ; i <= document.getElementsByClassName("hide").length; i++ ){
+    if (document.getElementById("sidebar")?.style.width === "30rem") {
+      for (let i = 0; i <= document.getElementsByClassName("hide").length; i++) {
         document.getElementsByClassName("hide").item(i)?.setAttribute("style", "display: none")
         document.getElementsByClassName("icons").item(i)?.setAttribute("style", "margin-left: 1.25rem")
-        
+
       }
 
     } else {
-      for (let i = 0 ; i <= document.getElementsByClassName("hide").length; i++ ){
+      for (let i = 0; i <= document.getElementsByClassName("hide").length; i++) {
         document.getElementsByClassName("hide").item(i)?.setAttribute("style", "display: block")
       }
     }
