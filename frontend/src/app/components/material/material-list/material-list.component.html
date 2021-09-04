@@ -22,7 +22,7 @@
             </div>
 
             <div class="nav-item">
-                <button class="btn btn-block btn-lg" style=" height:100%; background-color: var(--primary-color); color: var(--white); font-weight: bold;">
+                <button (click)="goToCreate()" class="btn btn-block btn-lg" style=" height:100%; background-color: var(--primary-color); color: var(--white); font-weight: bold;">
                     Compartilhe seu material
                 </button>
             </div>
@@ -31,7 +31,7 @@
     <div class="row">
         <div *ngFor="let item of materials" class="col-3" style="margin-bottom: 3rem;">
             <div class="card" style="width: 23rem; height: 30rem;">
-                <img class="card-img-top" style="height: 12rem; width: auto;" [src]="item.image" alt="Card image cap">
+                <div class="container" style="height: 10rem; background-image: url({{item.image.url}}); background-position: center; background-size: cover;"></div>
                 <div class="card-body">
                   <h4 class="card-title">{{item.title}}</h4>
                   <p class="card-text" style="font-size: 16pt; margin-top: 1.5rem;">{{item.description}}</p>

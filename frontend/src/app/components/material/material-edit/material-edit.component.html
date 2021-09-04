@@ -1,0 +1,57 @@
+<div class="container-fluid" style= "width: 100%;">
+
+    <div  style="color:var(--primary-color); font-weight: bolder; margin-top: 6rem;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">Início</li>
+              <li class="breadcrumb-item active" aria-current="page">Materiais</li>
+            </ol>
+          </nav>
+    </div>
+
+
+
+      <!-- Form -->
+      
+  <div class="container-fluid">
+    <h2>Criar Material</h2>
+    <p class="lead">Cadastre seu material e compartilhe com a comunidade!</p>
+
+    <form [formGroup]="form" class="row g-3" style="margin-top: 3rem;">
+        <div class="col-md-12">
+          <label for="inputEmail4" class="form-label">Título</label>
+          <input type="text" class="form-control form-control-lg" formControlName="title">
+        </div>
+
+        <div class="col-md-12">
+            <label for="inputEmail4" class="form-label">Descrição</label>
+            <textarea type="text" class="form-control form-control-lg"formControlName="description"></textarea>
+          </div>
+
+
+
+      </form>
+
+      
+    <div>
+      <label for="formFileLg" class="form-label">Large file input example</label>
+      <input class="form-control form-control-lg"  id="formFile" (change)="onChange($event)" type="file">
+    </div>
+
+
+    <div class="col-lg-2 col-12" style="margin-top: 3rem;">
+      <button type="submit" class="btn btn-lg btn-block"  style="background-color: var(--primary-color); color: var(--white);" (click)="onSubmit()">Cadastrar</button>
+    </div>
+
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2017–2021 Company Name</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+  </div>
+  
+</div>
