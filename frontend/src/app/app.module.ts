@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './components/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { MaterialModule } from './components/material/material.module';
     BrowserAnimationsModule,
 	  ToastrModule.forRoot(),
     MaterialModule,
-
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
