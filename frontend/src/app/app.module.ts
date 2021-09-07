@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './components/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './components/shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AuthModule,
     NgbModule,
+    SharedModule,
     BrowserAnimationsModule,
 	  ToastrModule.forRoot(),
     MaterialModule,

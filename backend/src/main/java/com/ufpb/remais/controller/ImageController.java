@@ -35,6 +35,7 @@ public class ImageController {
 	
 	@GetMapping("")
 	public List<Image> getAll(){
+		List<Image> list = this.imageRepository.findAll(); 
 		return this.imageRepository.findAll();
 	}
 	

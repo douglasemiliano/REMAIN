@@ -4,7 +4,8 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">Início</li>
-              <li class="breadcrumb-item active" aria-current="page">Materiais</li>
+              <li class="breadcrumb-item" (click)="goToMaterials()" style="cursor: pointer;">Materiais</li>
+              <li class="breadcrumb-item active" aria-current="page">Compartilhar material</li>
             </ol>
           </nav>
     </div>
@@ -40,7 +41,12 @@
 
 
     <div class="col-lg-2 col-12" style="margin-top: 3rem;">
-      <button type="submit" class="btn btn-lg btn-block"  style="background-color: var(--primary-color); color: var(--white);" (click)="onSubmit()">Cadastrar</button>
+      
+      <button type="submit" class="btn btn-lg btn-block"  style="background-color: var(--primary-color); color: var(--white);" (click)="onSubmit()">
+        <div *ngIf="loading" class="spinner-border text-light" role="status"></div>
+        <span *ngIf="!loading">Cadastrar</span>      
+      </button>
+  
     </div>
 
 

@@ -1,19 +1,57 @@
 package com.ufpb.remais.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
-import lombok.Data;
 
-@Data
+@Entity
+@Table (name="users")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -889516755900141971L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String uid;
-	private String name;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private boolean isEmailVerified;
-	private String issuer;
-	private String picture;
+	private String birthDate;
+	private String photoUrl;
+	private Date createdAt;
+	private Date updatedAt;
+
+
+	public User() {
+	}
+
+	public User(Long id, String uid, String firstName, String lastName, String email, boolean isEmailVerified, String birthDate, String photoUrl, Date createdAt, Date updatedAt) {
+		this.id = id;
+		this.uid = uid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.isEmailVerified = isEmailVerified;
+		this.birthDate = birthDate;
+		this.photoUrl = photoUrl;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getUid() {
 		return uid;
@@ -23,12 +61,20 @@ public class User implements Serializable {
 		this.uid = uid;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getEmail() {
@@ -43,24 +89,40 @@ public class User implements Serializable {
 		return isEmailVerified;
 	}
 
-	public void setEmailVerified(boolean isEmailVerified) {
-		this.isEmailVerified = isEmailVerified;
+	public void setEmailVerified(boolean emailVerified) {
+		isEmailVerified = emailVerified;
 	}
 
-	public String getIssuer() {
-		return issuer;
+	public String getBirthDate() {
+		return birthDate;
 	}
 
-	public void setIssuer(String issuer) {
-		this.issuer = issuer;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
-	public String getPicture() {
-		return picture;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 }
+

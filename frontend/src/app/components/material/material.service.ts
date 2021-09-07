@@ -104,4 +104,14 @@ export class MaterialService {
     return this.http.post('https://upload.gyazo.com/api/upload', multiPartForm);
   }
 
+  public saveImage(image: any):any{
+    return this.http.post('http://localhost:8080/public/image', image)
+    .subscribe( () => {
+      this.toastr.success("Imagem salva com sucesso","Sucesso")
+      this.router.navigate(['materiais'])      
+    }, error => {
+      this.toastr.error(error, "Erro")
+    });
+  }
+
 }
