@@ -1,0 +1,12 @@
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+
+    /* the rest of your styling */
+}
+
+.btn-logout:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}

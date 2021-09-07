@@ -1,35 +1,30 @@
-<nav *ngIf="logged" class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: var(--white); display: flex; justify-content: space-between;">
-  <a class="navbar-brand">
-      <img src="https://i.imgur.com/3onBlhj.png" alt="Repositório de Materiais Instrucionais" style="width: 10em; height: auto; margin-left: 3rem;">   
-  </a>
+
+<div *ngIf="logged"><app-navbar (logoutEmitter)=encerrarSecao($event) [user]="user"></app-navbar></div>
 
 
-  <span>
-    <img class="rounded-circle"  [src]="user?.photoURL" style="width: 3em; height: auto; margin-left: 3rem;">   
-    <button style="margin: 0 1em; padding: 0.5rem 2rem;" class="btn btn-logout btn-lg" (click)="logOut()">Sair</button>
-  </span>
-    
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-</nav>
 
 <div *ngIf="logged" style="display: flex; flex-direction: row;">
   <div  [@openClose]="isOpen ? 'open' : 'closed'" class="container-fluid sidebar" id="sidebar">
     <div style="margin-top: 7rem;">
       <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
         <img src="https://i.imgur.com/cWRd9nN.png" class="icons" alt="ícone de explorar">
-        <p class="hide">Explorar!</p>
+        <div class="title">
+          <p class="hide">Explorar!</p>
+        </div>
       </div>
 
       <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
         <img src="https://i.imgur.com/XX9JBUv.png" class="icons" alt="ìcone de categoria">
-        <p class="hide">Categorias</p>
+        <div class="title">
+          <p class="hide">Categorias</p>
+        </div>
       </div>
 
       <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
         <img src="https://i.imgur.com/2XCpa5T.png" class="icons" alt="ícone de envios recentes">
-        <p class="hide">Envios recentes</p>
+        <div class="title">
+           <p class="hide">Envios recentes</p>
+        </div>
       </div>
 
     </div>

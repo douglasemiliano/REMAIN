@@ -7,19 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "usuario")
+//@Entity
+//@Table(name = "usuario")
 public class UserLogin {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "name")
+//	@Column(name = "name")
 	private String name;
 
-	@Column(name = "email")
+//	@Column(name = "email")
 	private String email;
 
 	public UserLogin() {

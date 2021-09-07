@@ -17,6 +17,7 @@ export class MaterialEditComponent implements OnInit {
   form: FormGroup;
   selectedFiles: any;
   formData = new FormData();
+  public loading: boolean = false;
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -25,6 +26,10 @@ export class MaterialEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+  }
+
+  public goToMaterials(): void{
+    this.router.navigate(['materiais'])
   }
 
   createForm(): void {
@@ -37,6 +42,7 @@ export class MaterialEditComponent implements OnInit {
 
   onSubmit(): void {
     this.insertImageOnform();
+    this.loading = true;
   }
 
   onChange(event: any) {
@@ -54,7 +60,7 @@ export class MaterialEditComponent implements OnInit {
     this.meterialService.uploadImage(this.formData).subscribe( data =>{
       this.form.get('image')?.setValue(data)
       this.meterialService.postMaterial(this.form.value);
-      this.router.navigate(['materiais'])      
+      this.meterialService.saveImage(data);
     });
   }
 }
