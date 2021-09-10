@@ -24,6 +24,14 @@ export class MaterialService {
         thumb_url: "https://thumb.gyazo.com/thumb/200/eyJhbGciOiJIUzI1NiJ9.eyJpbWciOiJfMmNiYmNhMDgxNjA5OGQxMDA3ZTgyYzY5NmM1OGYyNTEifQ.TOEgKt9xsvmfTlrqVwsGrdCp2_cWNQAEnu8j261UcKk-jpg.jpg",
         type: "jpg",
         url: "https://play-lh.googleusercontent.com/2lW0k28gmKwv75J0ZqVSw-Bxi6JAuHAFxQkf0ppVfMnKg-BBAXmkQcblqp2M1yW00ju-"
+      },
+      author: {
+        "uid": "uid3",
+        "firstName": "Douglas",
+        "lastName": "Emiliano",
+        "email": "emaildedouglas@gmail.com",
+        "birthDate": "11/08/1995",
+        "photoUrl": "ASaas"
       }
     },
     {
@@ -39,6 +47,14 @@ export class MaterialService {
         thumb_url: "https://thumb.gyazo.com/thumb/200/eyJhbGciOiJIUzI1NiJ9.eyJpbWciOiJfMmNiYmNhMDgxNjA5OGQxMDA3ZTgyYzY5NmM1OGYyNTEifQ.TOEgKt9xsvmfTlrqVwsGrdCp2_cWNQAEnu8j261UcKk-jpg.jpg",
         type: "jpg",
         url: "https://s2.glbimg.com/NNbJWCWpPiTmrRTP6Vq_NWVXZw8=/e.glbimg.com/og/ed/f/original/2018/10/31/math-1500720_1920.jpg"
+      },
+      author: {
+        "uid": "uid3",
+        "firstName": "Douglas",
+        "lastName": "Emiliano",
+        "email": "emaildedouglas@gmail.com",
+        "birthDate": "11/08/1995",
+        "photoUrl": "ASaas"
       }
     },
     {
@@ -54,6 +70,14 @@ export class MaterialService {
         thumb_url: "https://thumb.gyazo.com/thumb/200/eyJhbGciOiJIUzI1NiJ9.eyJpbWciOiJfMmNiYmNhMDgxNjA5OGQxMDA3ZTgyYzY5NmM1OGYyNTEifQ.TOEgKt9xsvmfTlrqVwsGrdCp2_cWNQAEnu8j261UcKk-jpg.jpg",
         type: "jpg",
         url: "https://i1.wp.com/ventruenoob.com/wp-content/uploads/2018/12/Governo-do-Reino-Unido-vai-ensinar-computa%C3%A7%C3%A3o-para-todas-as-crian%C3%A7as.jpg?fit=960%2C640&ssl=1"
+      },
+      author: {
+        "uid": "uid3",
+        "firstName": "Douglas",
+        "lastName": "Emiliano",
+        "email": "emaildedouglas@gmail.com",
+        "birthDate": "11/08/1995",
+        "photoUrl": "ASaas"
       }
     },
     {
@@ -69,6 +93,14 @@ export class MaterialService {
         thumb_url: "https://thumb.gyazo.com/thumb/200/eyJhbGciOiJIUzI1NiJ9.eyJpbWciOiJfMmNiYmNhMDgxNjA5OGQxMDA3ZTgyYzY5NmM1OGYyNTEifQ.TOEgKt9xsvmfTlrqVwsGrdCp2_cWNQAEnu8j261UcKk-jpg.jpg",
         type: "jpg",
         url: "https://img.freepik.com/vetores-gratis/ilustracao-em-vetor-conceito-contorno-geografia_1995-527.jpg?size=626&ext=jpg"
+      },
+      author: {
+        "uid": "uid3",
+        "firstName": "Douglas",
+        "lastName": "Emiliano",
+        "email": "emaildedouglas@gmail.com",
+        "birthDate": "11/08/1995",
+        "photoUrl": "ASaas"
       }
     },
     {
@@ -84,6 +116,14 @@ export class MaterialService {
         thumb_url: "https://thumb.gyazo.com/thumb/200/eyJhbGciOiJIUzI1NiJ9.eyJpbWciOiJfMmNiYmNhMDgxNjA5OGQxMDA3ZTgyYzY5NmM1OGYyNTEifQ.TOEgKt9xsvmfTlrqVwsGrdCp2_cWNQAEnu8j261UcKk-jpg.jpg",
         type: "jpg",
         url: "https://media.istockphoto.com/vectors/icon-refresh-reload-rotation-loop-pictogram-vector-id1085009066?b=1&k=6&m=1085009066&s=170667a&w=0&h=ieSh5C-QcOaqz_pGT4BvorpRd_rBW4NYXIKLVEygJck="
+      },
+      author: {
+        "uid": "uid3",
+        "firstName": "Douglas",
+        "lastName": "Emiliano",
+        "email": "emaildedouglas@gmail.com",
+        "birthDate": "11/08/1995",
+        "photoUrl": "ASaas"
       }
     },
 
@@ -114,4 +154,11 @@ export class MaterialService {
     });
   }
 
+  public getMaterialById(id: number): any{
+    for (let i =0; i < this.materials.length; i++){
+      if(this.materials[i].id == id){
+        return this.materials[i]      
+      }
+    }
+  }
 }

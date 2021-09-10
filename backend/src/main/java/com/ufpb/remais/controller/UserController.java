@@ -1,15 +1,16 @@
 package com.ufpb.remais.controller;
 
-import com.ufpb.remais.model.Image;
 import com.ufpb.remais.model.User;
 import com.ufpb.remais.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -33,8 +34,9 @@ public class UserController {
     }
 
     @GetMapping("")
-    public List<User> getAllUsers(){
-        return this.userRepository.findAll();
+    public Page<User> getAllUsers(){
+        PageRequest pageRequest = PageRequest.of(0,10);
+        return new PageImpl<>(this.userRepository.findAll(), pageRequest, 10);
     }
 
     @GetMapping("/{id}")

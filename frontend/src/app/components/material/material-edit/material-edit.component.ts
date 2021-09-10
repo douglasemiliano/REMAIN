@@ -34,6 +34,7 @@ export class MaterialEditComponent implements OnInit {
 
   createForm(): void {
     this.form = this.fb.group({
+      'id': new FormControl(''),
       'title': new FormControl(''),
       'description': new FormControl(''),
       'image': new FormControl('')
@@ -59,6 +60,7 @@ export class MaterialEditComponent implements OnInit {
   public insertImageOnform():void {
     this.meterialService.uploadImage(this.formData).subscribe( data =>{
       this.form.get('image')?.setValue(data)
+      this.form.get('id')?.setValue(data.image_id)
       this.meterialService.postMaterial(this.form.value);
       this.meterialService.saveImage(data);
     });
