@@ -11,7 +11,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+  public form: FormGroup;
+  public loading: boolean;
 
   constructor(
     private router: Router,
@@ -32,12 +33,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log(this.form.value);    
     this.authService.loginWithEmail(this.form.get('email')?.value, this.form.get('password')?.value);
   }
 
   loginGoogle(): void {
     this.authService.login();
+    this.loading = true;
   }
 
   createForm(): void{

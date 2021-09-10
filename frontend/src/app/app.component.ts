@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './components/auth/auth.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -30,23 +31,23 @@ export class AppComponent {
   public title: string = 'frontend';
   public logged: boolean = false;
   public isOpen: boolean = true;
-  public user: any;
+  public user: User;
 
   constructor(private authService: AuthService,
               private router: Router,) {
             }
 
-  ngOnInit(): void {
-    this.login();   
+  public ngOnInit(): void {
+    this.login();       
   }
 
-  encerrarSecao(tipo: boolean): void{
+  public encerrarSecao(tipo: boolean): void{
     this.logged = tipo;
     localStorage.clear();
     location.reload();
   }
 
-  login(): void {
+  public login(): void {
     if (localStorage.length === 0) {
       this.router.navigate(['login'])
       this.authService.userEmitter.subscribe(userReturned => {
@@ -55,7 +56,7 @@ export class AppComponent {
       });
     } else {
       this.logged = true;
-      this.router.navigate(['materiais'])
+      // this.router.navigate(['materiais/1'])
       this.authService.getUserByUid(localStorage.getItem('uid')).subscribe(user => {
         this.user = user;
       });
@@ -63,11 +64,11 @@ export class AppComponent {
   }
 
 
-  setLoginState(): void {
+  public setLoginState(): void {
     this.logged = this.authService.isLogged();
   }
 
-  resizeSidebar(): void {
+  public resizeSidebar(): void {
     this.toggle();
     if (document.getElementById("sidebar")?.style.width === "20rem") {
       for (let i = 0; i <= document.getElementsByClassName("hide").length; i++) {

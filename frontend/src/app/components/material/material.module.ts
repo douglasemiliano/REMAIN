@@ -4,19 +4,23 @@ import { MaterialListComponent } from './material-list/material-list.component';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { MaterialEditComponent } from './material-edit/material-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialViewComponent } from './material-view/material-view.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
     MaterialListComponent,
-    MaterialEditComponent
+    MaterialEditComponent,
+    MaterialViewComponent
   ],
   imports: [
     CommonModule,
     NgbPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   exports:[
     MaterialListComponent
