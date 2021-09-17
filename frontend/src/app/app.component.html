@@ -3,8 +3,8 @@
 
 
 
-<div *ngIf="logged" style="display: flex; flex-direction: row;">
-  <div  [@openClose]="isOpen ? 'open' : 'closed'" class="container-fluid sidebar" id="sidebar">
+<div  style="display: flex; flex-direction: row;">
+  <div *ngIf="logged"  [@openClose]="isOpen ? 'open' : 'closed'" class="container-fluid sidebar" id="sidebar">
     <div style="margin-top: 7rem;">
       <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
         <img src="https://i.imgur.com/cWRd9nN.png" class="icons" alt="ícone de explorar">
@@ -29,15 +29,10 @@
 
     </div>
   </div>
-  <div class="container-fluid">
-    <router-outlet></router-outlet>
-
+  <div style="width: 100%;">
+    <router-outlet></router-outlet> 
   </div>
 </div>
 
-
-<div *ngIf="!logged">
-  <router-outlet></router-outlet> 
-</div>
   
 

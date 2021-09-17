@@ -21,11 +21,11 @@ export class RegistrationComponent implements OnInit {
     private authService: AuthService
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createForm();
   }
 
-  createForm(): void{
+  public createForm(): void{
     this.form = new FormGroup({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -36,15 +36,15 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.goToLogin();
     this.authService.registrationWithEmail(this.form.get('email')?.value, this.form.get('password')?.value)
   }
 
-  showToaster(): void{
+  public showToaster(): void{
     this.toastr.success('Cadastro realizado com sucesso!', 'Sucesso', {easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 3000});
   }
-  goToLogin(): void {
+  public goToLogin(): void {
     this.router.navigate(['login']);
   }
 
