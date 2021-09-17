@@ -1,4 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Location } from '@angular/common';
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './components/auth/auth.service';
@@ -34,7 +35,7 @@ export class AppComponent {
   public user: User;
 
   constructor(private authService: AuthService,
-              private router: Router,) {
+              private router: Router) {
             }
 
   public ngOnInit(): void {
@@ -52,11 +53,12 @@ export class AppComponent {
       this.router.navigate(['login'])
       this.authService.userEmitter.subscribe(userReturned => {
         this.user = userReturned;
-        this.logged = true;        
+        this.logged = true;
+        console.log(userReturned);
+        this.router.navigate(['materiais']);
       });
     } else {
       this.logged = true;
-      // this.router.navigate(['materiais/1'])
       this.authService.getUserByUid(localStorage.getItem('uid')).subscribe(user => {
         this.user = user;
       });
@@ -87,7 +89,7 @@ export class AppComponent {
     }
   }
 
-  toggle() {
+  public toggle() {
     this.isOpen = !this.isOpen;
   }
 }

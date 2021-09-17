@@ -12,11 +12,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class MaterialEditComponent implements OnInit {
 
-  page = 1;
+  private page = 1;
 
-  form: FormGroup;
-  selectedFiles: any;
-  formData = new FormData();
+  public form: FormGroup;
+  public selectedFiles: any;
+  public formData = new FormData();
   public loading: boolean = false;
 
   constructor(private router: Router,
@@ -24,7 +24,7 @@ export class MaterialEditComponent implements OnInit {
     private meterialService: MaterialService,
     private http: HttpClient) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createForm();
   }
 
@@ -32,27 +32,28 @@ export class MaterialEditComponent implements OnInit {
     this.router.navigate(['materiais'])
   }
 
-  createForm(): void {
+  public createForm(): void {
     this.form = this.fb.group({
       'id': new FormControl(''),
       'title': new FormControl(''),
       'description': new FormControl(''),
-      'image': new FormControl('')
+      'image': new FormControl(''),
+      'externalLinks': new FormControl(''),
     });
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.insertImageOnform();
     this.loading = true;
   }
 
-  onChange(event: any) {
+  public onChange(event: any) {
     const file = <File>event.srcElement.files[0]
     this.formData.append('imagedata', file);
     this.formData.append('access_token', '1xm8Qe9bfAPdsCJVTU4nt8F01MLFjHAP0RowN3qndL8');
   }
 
-  goToCreate(): void {
+  public goToCreate(): void {
     this.router.navigate(['new']);
   }
 

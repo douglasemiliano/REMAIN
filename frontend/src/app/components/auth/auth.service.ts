@@ -26,11 +26,11 @@ export class AuthService {
     private http: HttpClient) { 
     }
 
-  isLogged(): boolean {
+    public isLogged(): boolean {
     return this.logged;
   }
 
-  createForm(): void{
+  public createForm(): void{
     this.form = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
@@ -44,16 +44,16 @@ export class AuthService {
     });
   }
 
-  login(): any {
-    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+  public login(): any {
+    return this.loginGoogle(new firebase.auth.GoogleAuthProvider());
   }
 
-  logout(): void {
+  public logout(): void {
     this.auth.signOut();
   }
 
 
-  loginWithEmail(email: string, password: string) {
+  public loginWithEmail(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {      
         result.user?.getIdToken().then(uid => {
@@ -67,7 +67,7 @@ export class AuthService {
       });
   }
 
-  registrationWithEmail(email: string, password: string) {
+  public registrationWithEmail(email: string, password: string) {
     return this.auth.createUserWithEmailAndPassword(email, password)
       .then((result => {
         this.showToaster('Cadastro criado com sucesso!');
@@ -76,7 +76,7 @@ export class AuthService {
   }
 
   
-  fillTheForm(user: any){
+  public fillTheForm(user: any){
     this.createForm();
     let name = (user?.displayName).split(" ");
     this.form.get("firstName")?.setValue(name[0])  
@@ -88,28 +88,29 @@ export class AuthService {
   }
 
 
-  AuthLogin(provider: any) {
+  public loginGoogle(provider: any) {
     return this.auth.signInWithPopup(provider)
       .then((result) => {
         this.fillTheForm(result?.user)
-        localStorage['uid'] = result.user?.uid;        
+        localStorage['uid'] = result.user?.uid; 
+        console.log(result.user);
+               
         this.saveUser(this.form.value)
-        this.router.navigate(['materiais'])      
         // this.showToaster('Login realizado com sucesso!');
       }).catch((error) => {
         this.showErrorToaster(error);
       });
   }
 
-  showToaster(msg: string): void {
+  public showToaster(msg: string): void {
     this.toastr.success(msg, 'Sucesso', { easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 2000 });
   }
 
-  showErrorToaster(erro: Error): void {
+  public showErrorToaster(erro: Error): void {
     this.toastr.error(erro.message, "Erro!", { easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 2000 });
   }
 
-  getUser(): any {
+  public getUser(): any {
     return this.user;
   }
 
@@ -118,7 +119,7 @@ export class AuthService {
     .subscribe(userReturned => {
       this.user = userReturned;   
       this.userEmitter.emit(userReturned);     
-      this.toastr.success("Usuário logado com sucesso","Sucesso")
+      this.toastr.success("Usuário logado com sucesso","Sucesso")      
     }, error => {
       this.toastr.error(error, "Erro")
     });
