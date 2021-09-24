@@ -10,14 +10,34 @@ import { MaterialService } from '../material.service';
 export class MaterialViewComponent implements OnInit {
 
   public material: any;
+  public id: number;
 
   constructor(private materialService: MaterialService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {    
-    this.material = this.materialService.getMaterialById(this.route.snapshot.params.id);
-    console.log(this.material);
-    
-    
+    this.getIdRoute();
+    this.getMaterial();
+  }
+
+  public getIdRoute(): void {
+    this.route.params.subscribe(data => {
+      this.id = data.id;
+    });
+  }
+
+  public getMaterial(): void{
+    this.materialService.getMaterialById(this.id).subscribe(result => {
+      this.material = result;
+      
+    })
+  }
+
+  public goToExternalLinks(): void{
+    window.open(this.material.externalLinks, "_blank");
+  }
+
+  public goToAttatchments(): void{
+   window.open(this.material.attatchments)
   }
 
 }

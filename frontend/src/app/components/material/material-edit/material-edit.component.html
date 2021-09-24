@@ -10,61 +10,124 @@
     </nav>
   </div>
 
-  <!-- Form -->
- 
   <div class="container-fluid">
     <h2>Compartilhar material</h2>
     <p class="lead">Cadastre seu material e compartilhe com a comunidade!</p>
 
-    <form [formGroup]="form" class="row g-3">
+    <div class="container" style="margin-top: 3rem;">
+      <mat-stepper #stepper>
+        <mat-step>
+          <ng-template matStepLabel>Escolha uma capa para material</ng-template>
+          <div class="container" style="margin-top: 1rem;">
 
-      <div class="col-md-12">
-        <label for="inputEmail4" class="form-label">Título</label>
-        <input type="text" class="form-control" formControlName="title">
-      </div>
+            <ngx-dropzone (change)="onSelect($event)" accept=".jpg, .png" [multiple]="false"
+              style="height: 20rem; width: 100%;">
+              <div class="container">
+                <ngx-dropzone-label>
+                  <div *ngIf="files.length==0" class="container" style="width: 100%;">
+                    <span class="material-icons-outlined" style="font-size: 32pt;">
+                      cloud_upload
+                    </span>
+                    <h1 class="upload-text">Solte o arquivo aqui!</h1>
+                    <h5 class="upload-text">ou clique na nuvem fazer o upload;</h5>
+                  </div>
+                </ngx-dropzone-label>
+                <div class="container"
+                  style="align-items: center; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+                  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>
+                      <div class="container">
+                        <div *ngIf="!f.url" class="spinner-border" style="color: var(--primary-color);" role="status">
+                        </div>
+                        <img [src]="f.url" style="height: 5rem;">
+                      </div>
+                    </ngx-dropzone-label>
+                  </ngx-dropzone-preview>
+                </div>
+              </div>
+            </ngx-dropzone>
 
-      <div class="col-md-12">
-        <label for="inputEmail4" class="form-label">Descrição</label>
-        <textarea type="text" class="form-control" formControlName="description"></textarea>
-      </div>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-dark " matStepperNext
+                style="margin-top: 1.2rem; border: none; background-color: var(--primary-color);">Avançar</button>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step label="Detalhe seu material um pouco mais!">
 
-      <div class="form-group col-md-6">
-        <label for="exampleFormControlSelect1">Categorias</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>Geral</option>
-          <option>Computação Desplugada</option>
-          <option>Computadores e Hardware</option>
-          <option>Disciplinas Escolares</option>
-          <option>Ensino de Programação</option>
-        </select>
-      </div>
+          <form [formGroup]="materialForm" class="row g-3">
 
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Links externos</label>
-        <input type="text" class="form-control" formControlName="externalLinks" />
-      </div>
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Título</label>
+              <input type="text" class="form-control" formControlName="title">
+            </div>
 
-    </form>
+            <div class="col-md-12">
+              <label for="inputEmail4" class="form-label">Descrição</label>
+              <textarea type="text" class="form-control" formControlName="description"></textarea>
+            </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <label for="formFileLg" class="form-label">Escolha uma capa para material</label>
-        <input class="form-control" id="formFile" (change)="onChange($event)" type="file">
-      </div>
+            <div class="form-group col-md-6">
+              <label for="exampleFormControlSelect1">Categorias</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Geral</option>
+                <option>Computação Desplugada</option>
+                <option>Computadores e Hardware</option>
+                <option>Disciplinas Escolares</option>
+                <option>Ensino de Programação</option>
+              </select>
+            </div>
 
-      <div class="col-md-6">
-        <label for="formFileLg" class="form-label">Anexos</label>
-        <input class="form-control" id="formFile" type="file">
-      </div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Links externos</label>
+              <input type="text" class="form-control" formControlName="externalLinks" />
+            </div>
 
-      <div style="margin-top: 1rem;">
-        <button type="submit" class="btn btn-lg" style="background-color: var(--primary-color); color: var(--white);"
-          (click)="onSubmit()">
+          </form>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-dark " matStepperNext
+              style="margin-top: 1.2rem; border: none; background-color: var(--primary-color);">Avançar</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step>
+
+
+          <ng-template matStepLabel>Anexos</ng-template>
+
+          <div class="container">
+            <input class="form-control" id="formFile" type="file" (change)="onChange($event)"
+              style="width: 100%; margin-top: 2rem;">
+          </div>
+
+          <div *ngIf="loading" class="container d-flex justify-content-center flex-column align-items-center" style="margin-top: 1rem; color: var(--primary-color);">
+            <h3>Fazendo o upload dos arquivos, aguarde...</h3>
+            <div class="spinner-border" role="status" style="color:var(--primary-color);"></div>
+          
+          </div>
+
+
+
+        </mat-step>
+      </mat-stepper>
+
+
+      <div class="container d-flex justify-content-end">
+        <button *ngIf="valid" type="submit" class="btn btn-lg"
+          style=" background-color: var(--primary-color); color: var(--white);" (click)="onSubmit()">
           <div *ngIf="loading" class="spinner-border text-light" role="status"></div>
           <span *ngIf="!loading">Cadastrar</span>
         </button>
+
       </div>
+
+
     </div>
+
+
+
+
 
 
 

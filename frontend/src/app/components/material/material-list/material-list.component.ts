@@ -11,12 +11,15 @@ export class MaterialListComponent implements OnInit {
   page = 1;
 
 
-  materials: any;
+  public materials: any[];
 
   constructor(private router: Router, private materialService: MaterialService) { }
 
   ngOnInit(): void {
-    this.materials = this.materialService.getMaterials()
+    this.materialService.getMaterials().subscribe(data => {
+      this.materials = data;
+      
+    })
   }
 
   goToCreate(): void {

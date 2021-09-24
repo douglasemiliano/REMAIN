@@ -10,6 +10,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './components/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './components/shared/shared.module';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -27,6 +29,9 @@ import { SharedModule } from './components/shared/shared.module';
 	  ToastrModule.forRoot(),
     MaterialModule,
     HttpClientModule,
+    MatStepperModule,
+    MatFormFieldModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

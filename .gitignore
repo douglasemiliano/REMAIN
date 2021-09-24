@@ -15,6 +15,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.application.properties
 
 # External tool builders
 .externalToolBuilders/
@@ -322,3 +323,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,jetbrains+all,eclipse,node,visualstudiocode
+
+
