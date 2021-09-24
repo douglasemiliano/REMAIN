@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 5rem;">
+<div *ngIf="material"class="container-fluid" style="margin-top: 5rem;">
 
     <div style="color:var(--primary-color); font-weight: bolder; margin-top: 3rem;">
         <nav aria-label="breadcrumb">
@@ -12,21 +12,21 @@
     </div>
 
     <h1>{{material.title}}</h1>
-    <span *ngFor="let category of material.categories" class="badge badge-success" style="margin-right: 0.5rem;">{{category}}</span>
+    <span class="badge badge-success" style="margin-right: 0.5rem;">{{material.category}}</span>
 
     <div class="row" style="margin-top: 1rem; margin-bottom: 2rem;">
         <div class="col-8">
             <img [src]="material.image.url"
-                class="img-fluid img" alt="..." style="width: 100%;">
+                class=" img" alt="..." style="height: 40rem; width: 100%;" >
         </div>
         <div class="col-4">
-            <div class="row">
+            <div class="row" *ngIf="material.attatchments">
                 <div class="col">
                     <div class="card-right container" style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem;">
                         <h4 style="margin-bottom: 1rem;">Materiais de apoio</h4>
                         <div class="btn btn-block btn-lg" style="display: flex; align-items: center; justify-content: center;">                
                             <span class="material-icons" style="margin-right: 0.5rem;">download</span> 
-                            <span>planos_de_aula_SO.zip</span>
+                            <span (click)="goToAttatchments()">Baixar conteúdo</span>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <h4 style="margin-bottom: 1rem;">Links externos</h4>
                         <div class="btn btn-block btn-lg" style="display: flex; align-items: center; justify-content: center;">                
                             <span class="material-icons" style="margin-right: 0.5rem;">link</span> 
-                            <span>Acessar conteúdo</span>
+                            <span (click)="goToExternalLinks()">Acessar conteúdo</span>
                         </div>
                     </div>
                 </div>

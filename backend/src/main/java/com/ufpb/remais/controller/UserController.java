@@ -1,5 +1,6 @@
 package com.ufpb.remais.controller;
 
+import com.ufpb.remais.model.Category;
 import com.ufpb.remais.model.User;
 import com.ufpb.remais.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

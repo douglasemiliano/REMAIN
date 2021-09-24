@@ -6,6 +6,12 @@ import { MaterialEditComponent } from './material-edit/material-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialViewComponent } from './material-view/material-view.component';
 import { RouterModule } from '@angular/router';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 
 
 
@@ -20,7 +26,13 @@ import { RouterModule } from '@angular/router';
     NgbPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    NgxDropzoneModule
+    
   ],
   exports:[
     MaterialListComponent
