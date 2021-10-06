@@ -8,22 +8,22 @@ import { MaterialService } from '../material.service';
   styleUrls: ['./material-list.component.scss']
 })
 export class MaterialListComponent implements OnInit {
-  page = 1;
+  public page = 0;
 
 
   public materials: any[];
 
   constructor(private router: Router, private materialService: MaterialService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.materialService.getMaterials().subscribe(data => {
-      this.materials = data;
+      this.materials = data.content;
       
     })
   }
 
-  goToCreate(): void {
-    this.router.navigate(['new'])
+  public goToCreate(): void {
+    this.router.navigate(['cadastrar'])
   }
 
 }
