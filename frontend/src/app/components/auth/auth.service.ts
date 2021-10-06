@@ -30,6 +30,10 @@ export class AuthService {
     return this.logged;
   }
 
+  public setLoginState(state: boolean): void {
+    this.logged = state;
+  }
+
   public createForm(): void{
     this.form = new FormGroup({
       firstName: new FormControl(''),

@@ -50,15 +50,18 @@ export class AppComponent {
 
   public login(): void {
     if (localStorage.length === 0) {
-      this.router.navigate(['login'])
       this.authService.userEmitter.subscribe(userReturned => {
         this.user = userReturned;
         this.logged = true;
+        this.authService.setLoginState(true)
+        console.log(this.authService.isLogged());
+        
         console.log(userReturned);
         this.router.navigate(['materiais']);
       });
     } else {
       this.logged = true;
+      this.authService.setLoginState(true)
       this.authService.getUserByUid(localStorage.getItem('uid')).subscribe(user => {
         this.user = user;
       });

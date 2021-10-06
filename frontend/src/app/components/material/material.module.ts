@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MaterialRoutingModule } from './material.routing.module';
 
 
 
@@ -31,8 +32,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    NgxDropzoneModule
-    
+    NgxDropzoneModule,
+    MaterialRoutingModule
   ],
   exports:[
     MaterialListComponent

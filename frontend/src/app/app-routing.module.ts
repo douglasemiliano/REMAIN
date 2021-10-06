@@ -5,14 +5,14 @@ import { RegistrationComponent } from './components/auth/registration/registrati
 import { MaterialEditComponent } from './components/material/material-edit/material-edit.component';
 import { MaterialListComponent } from './components/material/material-list/material-list.component';
 import { MaterialViewComponent } from './components/material/material-view/material-view.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path:'', component: LoginComponent },
-  { path:'login', component: LoginComponent },
-  { path: 'cadastro', component: RegistrationComponent },
-  { path: 'materiais', component: MaterialListComponent},
-  { path: 'new', component: MaterialEditComponent},
-  { path: 'materiais/:id', component: MaterialViewComponent}
+  { path: '', component: MaterialListComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent},
+  { path: 'cadastro', component: RegistrationComponent},
+  { path: 'materiais',
+    loadChildren: () => import ('./components/material/material.module').then(m => m.MaterialModule)}
 ];
 
 @NgModule({

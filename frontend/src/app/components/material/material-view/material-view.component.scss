@@ -12,12 +12,19 @@
     border: 1px solid;
     border-color: var(--primary-color);
     color: var(--primary-color);
+    a {
+        text-decoration: none;
+        color: var(--primary-color);
+    }
 }
 
 .btn:hover{
 
     background-color: var(--primary-color);
     color: var(--white);
+    a {
+        color: var(--white);
+    }
 }
 
 .card-right {

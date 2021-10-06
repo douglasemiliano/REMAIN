@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './components/shared/shared.module';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './components/auth/auth.service';
 
 
 
@@ -33,7 +35,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule
     
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

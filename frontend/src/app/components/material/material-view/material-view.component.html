@@ -26,7 +26,7 @@
                         <h4 style="margin-bottom: 1rem;">Materiais de apoio</h4>
                         <div class="btn btn-block btn-lg" style="display: flex; align-items: center; justify-content: center;">                
                             <span class="material-icons" style="margin-right: 0.5rem;">download</span> 
-                            <span (click)="goToAttatchments()">Baixar conteúdo</span>
+                            <a [href]="material.attatchments" [download]="material.title">Baixar conteúdo</a>
                         </div>
                     </div>
                 </div>
