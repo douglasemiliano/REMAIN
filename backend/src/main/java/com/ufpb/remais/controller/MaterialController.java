@@ -1,5 +1,6 @@
 package com.ufpb.remais.controller;
 
+import com.ufpb.remais.model.Category;
 import com.ufpb.remais.model.Material;
 import com.ufpb.remais.model.User;
 import com.ufpb.remais.repository.MaterialRepository;
@@ -29,6 +30,12 @@ public class MaterialController {
         return this.materialRepository.findAll(pageable);
     }
 
+    @GetMapping("/search={id}")
+    public Page<Material> getByAuthor(
+            @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long id) {
+        return this.materialRepository.getMaterialByAuthorId(id, pageable);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Material> getById(@PathVariable Long id) {
         Optional<Material> material = this.materialRepository.findById(id);
@@ -36,11 +43,6 @@ public class MaterialController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(material.get());
-    }
-
-    @GetMapping("/search={id}")
-    public List<Material> getByAuthor(@PathVariable Long id) {
-        return this.materialRepository.getMaterialByAuthorId(id);
     }
 
     @PostMapping

@@ -21,12 +21,13 @@ public class Material {
     private Date updatedAt;
     @ManyToOne
     private User author;
-    private Category category;
+    @OneToMany
+    private List <Category> category;
 
     public Material() {
     }
 
-    public Material(long id, String title, String description, Image image, String externalLinks, String attatchments, Date createdAt, Date updatedAt, User author, Category category) {
+    public Material(long id, String title, String description, Image image, String externalLinks, String attatchments, Date createdAt, Date updatedAt, User author, List<Category> category) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -111,11 +112,11 @@ public class Material {
         this.author = author;
     }
 
-    public String getCategory() {
-        return category.getDescription();
+    public List<Category> getCategory() {
+        return this.category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(List<Category> category) {
         this.category = category;
     }
 }

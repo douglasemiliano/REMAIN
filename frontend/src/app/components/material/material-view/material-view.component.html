@@ -12,7 +12,7 @@
     </div>
 
     <h1>{{material.title}}</h1>
-    <span class="badge badge-success" style="margin-right: 0.5rem;">{{material.category}}</span>
+    <span *ngFor="let category of material.category" class="badge badge-success" style="margin-right: 0.5rem;">{{category.name}}</span>
 
     <div class="row" style="margin-top: 1rem; margin-bottom: 2rem;">
         <div class="col-8">

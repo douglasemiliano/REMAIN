@@ -1,22 +1,39 @@
 package com.ufpb.remais.model;
 
-public enum Category {
-    COMPUTACAO_DESPLUGADA("Computação Desplugada"),
-    HARDWARES_E_SOFTWARES("Hardwares e Softwares"),
-    REDES_DE_COMPUTADORES("Redes de Computadores"),
-    SOFTWARES_EDUCACIONAIS("Softwares Educacionais"),
-    SISTEMAS_OPERACIONAIS("Sistemas Operacionais"),
-    DISCIPLINAS_REGULARES("Disciplinas Regulares"),
-    LOGICA_DE_PROGRAMACAO("Lógica de Programação"),
-    OUTROS("Outros");
+import javax.persistence.*;
 
-    private String description;
+@Entity
+@Table(name = "categories")
+public class Category {
 
-    Category(String description){
-        this.description = description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    public Category(Long id, String description) {
+        this.id = id;
+        this.name = description;
     }
 
-    public String getDescription() {
-        return description;
+    public Category() {
+
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String description) {
+        this.name = description;
     }
 }
