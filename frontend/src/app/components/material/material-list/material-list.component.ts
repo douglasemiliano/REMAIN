@@ -31,7 +31,7 @@ export class MaterialListComponent implements OnInit {
       if (data.content.length <= 8) {
         document.getElementById("breadcrumb")?.scrollIntoView();
       }
-      
+     
     });
   }
 
