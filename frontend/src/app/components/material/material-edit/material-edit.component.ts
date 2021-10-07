@@ -17,6 +17,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MaterialEditComponent implements OnInit {
 
+
+  public categories: string[] = ["Computação Desplugada","Hardwares e Softwares","Redes de Computadores", "Softwares Educacionais", "Sistemas Operacionais","Disciplinas Regulares", "Lógica de Programação", "Outros"]
+
   public valid: boolean = false;
   private page = 1;
   public materialForm: FormGroup;
@@ -56,7 +59,7 @@ export class MaterialEditComponent implements OnInit {
       'description': new FormControl(''),
       'image': new FormControl(),
       'externalLinks': new FormControl(''),
-      'category': new FormControl(6),
+      'category': new FormControl(''),
       'author': new FormControl(),
       'attatchments': new FormControl()
     });
@@ -76,11 +79,16 @@ export class MaterialEditComponent implements OnInit {
     this.insertFilesOnform();
   }
 
+  public printForm(){
+    // console.log(this.materialForm.value);
+  }
+
   public insertFilesOnform():void {
     this.materialService.postAttatchmentOnGoFile(this.goFileServer, this.fileFormData).subscribe(data => {
       this.materialForm.get("attatchments")?.setValue(data.data.directLink);
       this.valid = true;
       this.loading = false;
+      this.changeCategoryDescriptiontoIndex();
     }, error => {
       
     })
@@ -126,5 +134,15 @@ export class MaterialEditComponent implements OnInit {
     this.materialService.getGoFileServer().subscribe(data => {
       this.goFileServer = data.data.server;  
     });
+  }
+
+  public changeCategoryDescriptiontoIndex(): void {
+    let index = 7;
+    for (let i = 0; i <this.categories.length; i++) {
+      if (this.categories[i] === this.materialForm.get("category")?.value) {
+        index = i;
+      }
+    }
+    this.materialForm.get("category")?.setValue(index);
   }
 }

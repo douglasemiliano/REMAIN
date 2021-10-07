@@ -20,10 +20,13 @@ export class MaterialService {
     return this.http.get('http://localhost:8080/public/material');
   }
 
+  public getMaterialsWithPagination(page: number): Observable<any>{
+    return this.http.get(`http://localhost:8080/public/material?page=${page}`)
+  }
+
   public getMaterialById(id: number): Observable<any> {
     return this.http.get(`http://localhost:8080/public/material/${id}`);
   }
-
 
   public uploadImage(multiPartForm: FormData): Observable<any> {
     return this.http.post('https://upload.gyazo.com/api/upload', multiPartForm);

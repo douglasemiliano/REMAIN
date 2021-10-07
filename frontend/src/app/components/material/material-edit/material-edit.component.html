@@ -69,12 +69,8 @@
 
             <div class="form-group col-md-6">
               <label for="exampleFormControlSelect1">Categorias</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Geral</option>
-                <option>Computação Desplugada</option>
-                <option>Computadores e Hardware</option>
-                <option>Disciplinas Escolares</option>
-                <option>Ensino de Programação</option>
+              <select class="form-control" id="exampleFormControlSelect1" formControlName="category" (click)="printForm()">
+                <option *ngFor="let item of categories; index as i">{{item}}</option>
               </select>
             </div>
 
