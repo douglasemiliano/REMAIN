@@ -2,6 +2,7 @@ package com.ufpb.remais.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Material {
@@ -10,6 +11,7 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
+    @Column(length = 2000)
     private String description;
     @ManyToOne
     private Image image;
