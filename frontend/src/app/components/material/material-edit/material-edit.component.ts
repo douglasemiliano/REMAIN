@@ -8,6 +8,7 @@ import { AuthService } from '../../auth/auth.service';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { NgxDropzoneComponent } from 'ngx-dropzone';
 import { ToastrService } from 'ngx-toastr';
+import { Category } from 'src/app/models/category.model';
 
 
 @Component({
@@ -17,11 +18,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MaterialEditComponent implements OnInit {
 
-
-  public categories: string[] = ["Computação Desplugada","Hardwares e Softwares","Redes de Computadores", "Softwares Educacionais", "Sistemas Operacionais","Disciplinas Regulares", "Lógica de Programação", "Outros"]
-
+  public selectedCategories =  new FormControl([]);
+  public selectedCategoriesMirror: Category[] = [];
+  public categories: any[];
   public valid: boolean = false;
-  private page = 1;
+  public categoria: any;
   public materialForm: FormGroup;
   public imageFormData = new FormData();
   public fileFormData = new FormData();
@@ -40,6 +41,7 @@ export class MaterialEditComponent implements OnInit {
       this.getGofileServer();
       this.createForm();
       this.getUser();
+      this.getCategories();
     }
 
   public getUser(): void {
@@ -47,6 +49,12 @@ export class MaterialEditComponent implements OnInit {
       this.user = user;
       this.materialForm.get('author')?.setValue(this.user);      
     });
+  }
+
+  public getCategories(): void {
+    this.materialService.getCategories().subscribe(data => {
+      this.categories = data.content;
+    })
   }
 
   public goToMaterials(): void{
@@ -77,10 +85,11 @@ export class MaterialEditComponent implements OnInit {
     this.fileFormData.append('folderId', '349d81fd-f9a1-4b18-890b-50ca8d9f3068');
     this.loading = true;
     this.insertFilesOnform();
+    this.insertCategoryOnForm();
   }
 
   public printForm(){
-    // console.log(this.materialForm.value);
+   console.log(this.materialForm.value);
   }
 
   public insertFilesOnform():void {
@@ -88,7 +97,6 @@ export class MaterialEditComponent implements OnInit {
       this.materialForm.get("attatchments")?.setValue(data.data.directLink);
       this.valid = true;
       this.loading = false;
-      this.changeCategoryDescriptiontoIndex();
     }, error => {
       
     })
@@ -136,13 +144,17 @@ export class MaterialEditComponent implements OnInit {
     });
   }
 
-  public changeCategoryDescriptiontoIndex(): void {
-    let index = 7;
-    for (let i = 0; i <this.categories.length; i++) {
-      if (this.categories[i] === this.materialForm.get("category")?.value) {
-        index = i;
-      }
-    }
-    this.materialForm.get("category")?.setValue(index);
+  public selectCategories (category: any){
+    this.selectedCategoriesMirror.push(category)   
+  }
+
+  public removeCategoryFromSelectedList(index: number): void {
+    this.selectedCategories.value.splice(index, 1);
+    this.selectedCategoriesMirror.splice(index, 1);
+    this.selectedCategories.setValue(this.selectedCategories.value);
+  }
+
+  public insertCategoryOnForm(): void {
+    this.materialForm.get("category")?.setValue(this.selectedCategoriesMirror);
   }
 }

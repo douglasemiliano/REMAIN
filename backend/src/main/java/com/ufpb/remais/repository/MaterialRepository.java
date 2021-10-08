@@ -13,7 +13,7 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     Page <Material> getMaterialByAuthorId(Long id, Pageable pageable);
 
-    Page <Material> getMaterialByCategory(Integer category, Pageable pageable);
+    Page <Material> getMaterialByCategoryId(Long id, Pageable pageable);
 
 
     List<Material> findAllByAuthorIdOrderByCreatedAtDesc(Long id);

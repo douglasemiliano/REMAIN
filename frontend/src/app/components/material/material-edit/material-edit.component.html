@@ -57,27 +57,49 @@
 
           <form [formGroup]="materialForm" class="row g-3">
 
+
             <div class="col-md-12">
-              <label for="inputEmail4" class="form-label">Título</label>
-              <input type="text" class="form-control" formControlName="title">
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Título</mat-label>
+                <input matInput placeholder="Ex: Aprenda 'For' de vez em python" type="text" formControlName="title">
+              </mat-form-field>
             </div>
 
             <div class="col-md-12">
-              <label for="inputEmail4" class="form-label">Descrição</label>
-              <textarea type="text" class="form-control" formControlName="description"></textarea>
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="exampleFormControlSelect1">Categorias</label>
-              <select class="form-control" id="exampleFormControlSelect1" formControlName="category" (click)="printForm()">
-                <option *ngFor="let item of categories; index as i">{{item}}</option>
-              </select>
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Descrição</mat-label>
+                <textarea matInput placeholder="Ex: Material de monitoria sobre estrutura de repetição For em python..." type="text" formControlName="description"></textarea>
+              </mat-form-field>
             </div>
 
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Links externos</label>
-              <input type="text" class="form-control" formControlName="externalLinks" />
+              <mat-form-field class="example-chip-list" appearance="outline" style=" width: 100%;">
+                <mat-label>Categorias</mat-label>
+                <mat-select [formControl]="selectedCategories" multiple>
+                  <mat-option *ngFor="let category of categories" [value]="category.name" (click)="selectCategories(category)">
+                    {{category.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
             </div>
+
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Links externos</mat-label>
+                <input matInput placeholder="Ex: http://drive.google.com/..." type="text" formControlName="externalLinks">
+              </mat-form-field>
+            </div>
+
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip *ngFor="let category of selectedCategories.value; index as i" style="background-color: var(--primary-color); color: var(--white);">
+                {{category}}
+                <button matChipRemove (click)="removeCategoryFromSelectedList(i)">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip>
+            </mat-chip-list>
 
           </form>
           <div class="d-flex justify-content-end">
