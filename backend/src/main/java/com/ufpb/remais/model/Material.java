@@ -21,7 +21,7 @@ public class Material {
     private Date updatedAt;
     @ManyToOne
     private User author;
-    @OneToMany
+    @ManyToMany
     private List <Category> category;
 
     public Material() {

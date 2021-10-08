@@ -36,6 +36,13 @@ public class MaterialController {
         return this.materialRepository.getMaterialByAuthorId(id, pageable);
     }
 
+    @GetMapping("/category/{id}")
+    public Page<Material> getByCategory(
+            @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long id) {
+        return this.materialRepository.getMaterialByCategoryId(id, pageable);
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Material> getById(@PathVariable Long id) {
         Optional<Material> material = this.materialRepository.findById(id);

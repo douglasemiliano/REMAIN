@@ -20,6 +20,10 @@ export class MaterialService {
     return this.http.get('http://localhost:8080/public/material');
   }
 
+  public getCategories(): Observable<any>{
+    return this.http.get('http://localhost:8080/public/category');
+  }
+
   public getMaterialsWithPagination(page: number): Observable<any>{
     return this.http.get(`http://localhost:8080/public/material?page=${page}`)
   }
@@ -57,4 +61,5 @@ export class MaterialService {
   public postAttatchmentOnGoFile(server: string, file: FormData): Observable<any> {
     return this.http.post(`https://${server}.gofile.io/uploadFile`, file)
   }
+  
 }
