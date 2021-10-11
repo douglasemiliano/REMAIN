@@ -16,6 +16,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 
@@ -40,7 +41,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    AngularEditorModule 
 
   ],
   exports: [

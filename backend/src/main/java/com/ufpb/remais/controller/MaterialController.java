@@ -30,10 +30,10 @@ public class MaterialController {
         return this.materialRepository.findAll(pageable);
     }
 
-    @GetMapping("/search={id}")
+    @GetMapping("/author/{id}")
     public Page<Material> getByAuthor(
-            @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable Long id) {
-        return this.materialRepository.getMaterialByAuthorId(id, pageable);
+            @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable String id) {
+        return this.materialRepository.getMaterialByAuthorUid(id, pageable);
     }
 
     @GetMapping("/category/{id}")

@@ -26,7 +26,7 @@ export class MaterialViewComponent implements OnInit {
   }
 
   public getMaterial(): void{
-    this.materialService.getMaterialById(this.id).subscribe(result => {
+    this.materialService.getMaterialById(this.id).subscribe(result => {    
       this.material = result;
       
     })
@@ -39,5 +39,4 @@ export class MaterialViewComponent implements OnInit {
   public goToAttatchments(): void{
    window.open(this.material.attatchments)
   }
-
 }

@@ -11,7 +11,7 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
-    @Column(length = 2000)
+    @Column(length = 10000)
     private String description;
     @ManyToOne
     private Image image;

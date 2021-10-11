@@ -13,6 +13,9 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     Page <Material> getMaterialByAuthorId(Long id, Pageable pageable);
 
+    Page <Material> getMaterialByAuthorUid(String id, Pageable pageable);
+
+
     Page <Material> getMaterialByCategoryId(Long id, Pageable pageable);
 
 

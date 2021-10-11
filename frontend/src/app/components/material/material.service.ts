@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from '../auth/auth.service';
+import { AttatchmentsUrl, CategorylUrl, ImageUrl, MaterialUrl, PaginationUrl, SERVER_URL } from '../shared/utils/url.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -17,27 +18,35 @@ export class MaterialService {
               private authService: AuthService) { }
 
   public getMaterials(): Observable<any>{
-    return this.http.get('http://localhost:8080/public/material');
-  }
-
-  public getCategories(): Observable<any>{
-    return this.http.get('http://localhost:8080/public/category');
+    return this.http.get(SERVER_URL + MaterialUrl.BASE);
   }
 
   public getMaterialsWithPagination(page: number): Observable<any>{
-    return this.http.get(`http://localhost:8080/public/material?page=${page}`)
+    return this.http.get(SERVER_URL + MaterialUrl.BASE + PaginationUrl.PAGE + page)
+  }
+
+  public getMaterialsByAuthorWithPagination(page: number, authorUID: string | null): Observable<any>{
+    return this.http.get(SERVER_URL + MaterialUrl.BY_AUTHOR + authorUID + PaginationUrl.PAGE + page)
+  }
+
+  public getMaterialsByAuthor(authorUID: string | null): Observable<any>{
+    return this.http.get(SERVER_URL + MaterialUrl.BY_AUTHOR + authorUID)
   }
 
   public getMaterialById(id: number): Observable<any> {
-    return this.http.get(`http://localhost:8080/public/material/${id}`);
+    return this.http.get(SERVER_URL + MaterialUrl.BY_ID + id);
+  }
+
+  public getCategories(): Observable<any>{
+    return this.http.get(SERVER_URL + CategorylUrl.BASE);
   }
 
   public uploadImage(multiPartForm: FormData): Observable<any> {
-    return this.http.post('https://upload.gyazo.com/api/upload', multiPartForm);
+    return this.http.post(ImageUrl.UPLOAD, multiPartForm);
   }
 
   public saveImage(image: any):Observable<any>{
-    return this.http.post('http://localhost:8080/public/image', image)
+    return this.http.post(SERVER_URL + ImageUrl.BASE, image)
   }
 
   public getUserByUid(uid: any): Observable<User> {
@@ -45,7 +54,7 @@ export class MaterialService {
   }
 
   public postMaterial(material: any){ 
-    return this.http.post(`http://localhost:8080/public/material`,material).
+    return this.http.post(SERVER_URL + MaterialUrl.BASE,material).
     subscribe( () => {
       this.toastr.success("Material salvo com sucesso", "sucesso")
       this.router.navigate(['materiais'])
@@ -55,11 +64,11 @@ export class MaterialService {
   }
 
   public getGoFileServer(): Observable<any>{
-    return this.http.get(`https://api.gofile.io/getServer`);
+    return this.http.get(AttatchmentsUrl.GET_SERVER);
   }
 
   public postAttatchmentOnGoFile(server: string, file: FormData): Observable<any> {
-    return this.http.post(`https://${server}.gofile.io/uploadFile`, file)
+    console.log(server);
+    return this.http.post(`https://${server}.${AttatchmentsUrl.UPLOAD}`, file)
   }
-  
 }
