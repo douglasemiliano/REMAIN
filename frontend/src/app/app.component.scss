@@ -3,8 +3,9 @@
     -webkit-box-shadow: 8px 8px 6px -6px #999;
     -moz-box-shadow: 8px 8px 6px -6px #999;
     box-shadow: 6px 8px 6px -6px #999;
-    height: 100vw;
-
+    position:relative;
+    overflow:hidden;
+    background-color: var(--white);
 }
 
 #btnLeft{

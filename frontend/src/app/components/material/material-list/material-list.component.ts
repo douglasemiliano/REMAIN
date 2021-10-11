@@ -11,11 +11,12 @@ export class MaterialListComponent implements OnInit {
   public page = 0;
   public materials: any[];
   public collectionSize: number = 0;
+  public authorUID = localStorage.getItem("uid");
 
   constructor(private router: Router, private materialService: MaterialService) { }
 
   public ngOnInit(): void {
-    this.materialService.getMaterials().subscribe(data => {
+    this.materialService.getMaterialsByAuthor(this.authorUID).subscribe(data => {
       this.materials = data.content;
       this.collectionSize = data.totalElements;       
     });
@@ -26,12 +27,11 @@ export class MaterialListComponent implements OnInit {
   }
 
   public onPageChange(pageNum: number): void {
-    this.materialService.getMaterialsWithPagination(pageNum-1).subscribe(data => {
+    this.materialService.getMaterialsByAuthorWithPagination(pageNum-1, this.authorUID).subscribe(data => {
       this.materials = data.content;
       if (data.content.length <= 8) {
         document.getElementById("breadcrumb")?.scrollIntoView();
-      }
-     
+      }  
     });
   }
 

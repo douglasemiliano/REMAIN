@@ -39,9 +39,8 @@
                 <div class="container"
                     style="height: 10rem; background-image: url({{item.image.url}}); background-position: center; background-size: cover;">
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="height:2rem">
                     <h6 class="card-title" style="font-size: 12pt;">{{item.title}}</h6>
-                    <p class="card-text- text-truncate" style="max-width: 30rem; font-size: 10pt">{{item.description}}</p>
                 </div>
                 <div class="card-footer" style="background-color: white; margin-top: 2rem;">
                     <button class="btn btn-block" [routerLink]="['/materiais', item.id]"

@@ -9,6 +9,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { NgxDropzoneComponent } from 'ngx-dropzone';
 import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category.model';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { Category } from 'src/app/models/category.model';
 })
 export class MaterialEditComponent implements OnInit {
 
+  public htmlContent = new FormControl();
   public selectedCategories =  new FormControl([]);
   public selectedCategoriesMirror: Category[] = [];
   public categories: any[];
@@ -89,7 +91,7 @@ export class MaterialEditComponent implements OnInit {
   }
 
   public printForm(){
-   console.log(this.materialForm.value);
+   console.log(this.htmlContent.value);
   }
 
   public insertFilesOnform():void {
@@ -157,4 +159,44 @@ export class MaterialEditComponent implements OnInit {
   public insertCategoryOnForm(): void {
     this.materialForm.get("category")?.setValue(this.selectedCategoriesMirror);
   }
+
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'yes',
+    defaultParagraphSeparator: '',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      [
+        'backgroundColor',
+        'customClasses',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'removeFormat',
+        'toggleEditorMode'
+      ]
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
 }
