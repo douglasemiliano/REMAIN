@@ -10,10 +10,13 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @ManyToOne
+    private Image image;
 
-    public Category(Long id, String description) {
+    public Category(Long id, String description,Image image) {
         this.id = id;
         this.name = description;
+        this.image = image;
     }
 
     public Category() {
@@ -35,5 +38,10 @@ public class Category {
 
     public void setName(String description) {
         this.name = description;
+    }
+
+    public Image getImage() { return image;
+    }
+    public void setImage(Image image) { this.image = image;
     }
 }

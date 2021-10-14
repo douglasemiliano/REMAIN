@@ -96,9 +96,7 @@ export class AuthService {
     return this.auth.signInWithPopup(provider)
       .then((result) => {
         this.fillTheForm(result?.user)
-        localStorage['uid'] = result.user?.uid; 
-        console.log(result.user);
-               
+        localStorage['uid'] = result.user?.uid;               
         this.saveUser(this.form.value)
         // this.showToaster('Login realizado com sucesso!');
       }).catch((error) => {
@@ -107,7 +105,7 @@ export class AuthService {
   }
 
   public showToaster(msg: string): void {
-    this.toastr.success(msg, 'Sucesso', { easeTime: 300, progressAnimation: 'increasing', progressBar: true, timeOut: 2000 });
+    this.toastr.success(msg, 'Sucesso', { easeTime: 150, progressAnimation: 'increasing', progressBar: true, timeOut: 2000 });
   }
 
   public showErrorToaster(erro: Error): void {

@@ -14,12 +14,14 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './components/auth/auth.service';
+import { HomeComponent } from './components/home/home.component';
+import { HomeModule } from './components/home/home.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { AuthService } from './components/auth/auth.service';
     MaterialModule,
     HttpClientModule,
     MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HomeModule
     
   ],
   providers: [AuthService, AuthGuard],

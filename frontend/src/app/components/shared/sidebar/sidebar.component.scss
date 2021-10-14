@@ -1,0 +1,37 @@
+
+.sidebar {
+    -webkit-box-shadow: 8px 8px 6px -6px #999;
+    -moz-box-shadow: 8px 8px 6px -6px #999;
+    box-shadow: 6px 8px 6px -6px #999;
+    position:relative;
+    overflow:hidden;
+    background-color: var(--white);
+    height: 100%;
+}
+
+#btnLeft{
+    margin-top: 7rem;
+    cursor: pointer;
+}
+
+.menu-sidebar {
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    .title{
+      padding-top: 0.7rem;
+    }
+    .icons {
+        margin: 0 0.8rem;
+        width: 3rem;
+    }
+}
+
+.menu-sidebar:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}

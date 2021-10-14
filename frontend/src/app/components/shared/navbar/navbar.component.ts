@@ -9,6 +9,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  public collapsed = true;
   public logged: boolean;
   @Input() public user: any;
   @Output() public logoutEmitter = new EventEmitter<boolean>();
@@ -21,8 +22,8 @@ export class NavbarComponent implements OnInit {
 
   logOut(): void {
     this.logged = false;
-    this.router.navigate(['login'])
     localStorage.clear();
     this.logoutEmitter.emit(false);
+    this.router.navigate(['home'])
   }
 }

@@ -7,6 +7,7 @@ import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../../../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterModule
   ],
   exports: [RegistrationComponent, LoginComponent]
 })

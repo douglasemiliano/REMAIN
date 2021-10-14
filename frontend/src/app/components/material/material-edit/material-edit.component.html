@@ -3,7 +3,7 @@
   <div style="color:var(--primary-color); font-weight: bolder; margin-top: 6rem;">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">Início</li>
+        <li class="breadcrumb-item" routerLink="/home" style="cursor: pointer;">Início</li>
         <li class="breadcrumb-item" (click)="goToMaterials()" style="cursor: pointer;">Materiais</li>
         <li class="breadcrumb-item active" aria-current="page">Compartilhar material</li>
       </ol>
@@ -79,7 +79,8 @@
               <mat-form-field class="example-chip-list" appearance="outline" style=" width: 100%;">
                 <mat-label>Categorias</mat-label>
                 <mat-select [formControl]="selectedCategories" multiple>
-                  <mat-option *ngFor="let category of categories" [value]="category.name" (click)="selectCategories(category)">
+                  <mat-option *ngFor="let category of categories" [value]="category.name"
+                    (click)="selectCategories(category)">
                     {{category.name}}
                   </mat-option>
                 </mat-select>
@@ -92,12 +93,14 @@
             <div class="col-md-6">
               <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>Links externos</mat-label>
-                <input matInput placeholder="Ex: http://drive.google.com/..." type="text" formControlName="externalLinks">
+                <input matInput placeholder="Ex: http://drive.google.com/..." type="text"
+                  formControlName="externalLinks">
               </mat-form-field>
             </div>
 
             <mat-chip-list #chipList aria-label="Fruit selection">
-              <mat-chip *ngFor="let category of selectedCategories.value; index as i" style="background-color: var(--primary-color); color: var(--white);">
+              <mat-chip *ngFor="let category of selectedCategories.value; index as i"
+                style="background-color: var(--primary-color); color: var(--white);">
                 {{category}}
                 <button matChipRemove (click)="removeCategoryFromSelectedList(i)">
                   <mat-icon>cancel</mat-icon>
@@ -118,16 +121,17 @@
 
           <ng-template matStepLabel>Anexos</ng-template>
 
-          <div class="container">
+          <div class="container" style="height: 30vh;">
             <input class="form-control" id="formFile" type="file" (change)="onChange($event)"
               style="width: 100%; margin-top: 2rem;">
           </div>
-          
 
-          <div *ngIf="loading" class="container d-flex justify-content-center flex-column align-items-center" style="margin-top: 1rem; color: var(--primary-color);">
+
+          <div *ngIf="loading" class="container d-flex justify-content-center flex-column align-items-center"
+            style="margin-top: 1rem; color: var(--primary-color);">
             <h3>Fazendo o upload dos arquivos, aguarde...</h3>
             <div class="spinner-border" role="status" style="color:var(--primary-color);"></div>
-          
+
           </div>
 
 
@@ -155,7 +159,7 @@
 
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-      <p class="mb-1">&copy; 2017–2021 Company Name</p>
+      <p class="mb-1">&copy; 2021 - Douglas Emiliano | Remain</p>
       <ul class="list-inline">
         <li class="list-inline-item"><a href="#">Privacy</a></li>
         <li class="list-inline-item"><a href="#">Terms</a></li>
