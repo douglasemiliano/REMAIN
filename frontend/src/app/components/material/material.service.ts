@@ -21,6 +21,10 @@ export class MaterialService {
     return this.http.get(SERVER_URL + MaterialUrl.BASE);
   }
 
+  public getMaterialsWithSort(sort: string): Observable<any>{
+    return this.http.get(SERVER_URL + MaterialUrl.BASE + "?" + PaginationUrl.SORT + sort);
+  }
+
   public getMaterialsWithPagination(page: number): Observable<any>{
     return this.http.get(SERVER_URL + MaterialUrl.BASE + PaginationUrl.PAGE + page)
   }
@@ -35,6 +39,10 @@ export class MaterialService {
 
   public getMaterialById(id: number): Observable<any> {
     return this.http.get(SERVER_URL + MaterialUrl.BY_ID + id);
+  }
+
+  public incrementViewOnMaterial(id: number){
+    return this.http.patch(SERVER_URL + MaterialUrl.BY_ID + id, null);
   }
 
   public getCategories(): Observable<any>{

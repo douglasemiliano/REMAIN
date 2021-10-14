@@ -4,7 +4,6 @@ export namespace PaginationUrl {
     export const PAGE = "?page="
     export const SIZE = "&size="
     export const SORT = "&sort="
-
 }
 
 export namespace MaterialUrl {

@@ -1,4 +1,4 @@
-<nav *ngIf="!loginScreen || logged"><app-navbar (logoutEmitter)=encerrarSecao($event) [user]="user"></app-navbar></nav>
+<nav *ngIf="!loginScreen || !loginScreen && logged"><app-navbar (logoutEmitter)=encerrarSecao($event) [user]="user"></app-navbar></nav>
 
 
 <div  style="display: flex; flex-direction: row;">

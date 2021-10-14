@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @RestController
@@ -26,7 +27,7 @@ public class MaterialController {
 
     @GetMapping("")
     public Page<Material> getAllMaterials(
-            @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable){
+            @PageableDefault(page = 0, size = 12) Pageable pageable){
         return this.materialRepository.findAll(pageable);
     }
 
@@ -42,6 +43,13 @@ public class MaterialController {
         return this.materialRepository.getMaterialByCategoryId(id, pageable);
     }
 
+    @GetMapping("/search={title}")
+    public Page<Material> search(
+        @PageableDefault(page = 0, size = 12, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable, @PathVariable String title) {
+        System.err.println(title);
+            return this.materialRepository.findByTitleContaining(title, pageable);
+        }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Material> getById(@PathVariable Long id) {
@@ -55,7 +63,17 @@ public class MaterialController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Material addMaterial(@RequestBody Material material){
+        material.setTitle(material.getTitle().toLowerCase());
         material.setCreatedAt(new Date());
+        return this.materialRepository.save(material);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Material incrementView(@PathVariable Long id){
+        Material material = this.materialRepository.getById(id);
+        material.setUpdatedAt(new Date());
+        material.setViews(material.getViews()+1);
         return this.materialRepository.save(material);
     }
 
