@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="materials")
 public class Material {
 
     @Id
@@ -23,11 +24,12 @@ public class Material {
     private User author;
     @ManyToMany
     private List <Category> category;
+    private Integer views = 0;
 
     public Material() {
     }
 
-    public Material(long id, String title, String description, Image image, String externalLinks, String attatchments, Date createdAt, Date updatedAt, User author, List<Category> category) {
+    public Material(long id, String title, String description, Image image, String externalLinks, String attatchments, Date createdAt, Date updatedAt, User author, List<Category> category, Integer views) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -38,6 +40,7 @@ public class Material {
         this.updatedAt = updatedAt;
         this.author = author;
         this.category = category;
+        this.views = views;
     }
 
     public long getId() {
@@ -119,4 +122,8 @@ public class Material {
     public void setCategory(List<Category> category) {
         this.category = category;
     }
+
+    public Integer getViews() { return views; }
+
+    public void setViews(Integer views) { this.views = views; }
 }

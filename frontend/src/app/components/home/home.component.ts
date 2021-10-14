@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   public materials: any;
   public categories: any;
+  public mostPopulars: any;
   config: SwiperOptions = {
     slidesPerView: 3,
     spaceBetween: 50,
@@ -32,8 +33,9 @@ export class HomeComponent implements OnInit {
   constructor(private materialService: MaterialService) { }
 
   ngOnInit(): void {
-    this.FetchMaterials();
-    this.FetchCategories();
+    this.fetchMaterials();
+    this.fetchCategories();
+    this.fetchMostPopulars();
   }
 
   onSwiper(event: any) {
@@ -43,14 +45,25 @@ export class HomeComponent implements OnInit {
     console.log('slide change');
   }
 
-  public FetchMaterials(): void{
-    this.materialService.getMaterials().subscribe(data => {
+  public fetchMaterials(): void{
+    this.materialService.getMaterialsWithSort("createdAt,desc").subscribe(data => {
+      console.log(data.content);
+      
       this.materials = data.content;   
     });
   }
 
-  public FetchCategories(): void {
+  public fetchMostPopulars(): void {
+    this.materialService.getMaterialsWithSort("views,desc").subscribe(data => {
+      console.log(data.content);
+
+      this.mostPopulars = data.content;   
+    });
+  }
+
+  public fetchCategories(): void {
     this.materialService.getCategories().subscribe(data => {
+
       this.categories = data.content;     
     });
   }

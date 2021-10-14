@@ -1,17 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: var(--white); display: flex; justify-content: space-between;">
-    <a class="navbar-brand">
-        <img src="https://i.imgur.com/3onBlhj.png" alt="Repositório de Materiais Instrucionais" style="width: 7em; height: auto; margin-left: 3rem; cursor: pointer;" routerLink="/login">   
-    </a>
-  
-      
-    <span *ngIf="user" class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
-      <img class="rounded-circle" ngbDropdownToggle id="navbarDropdown3" [src]="user?.photoUrl" style="width: 2.5rem; height: auto; margin-right: 2rem; cursor: pointer;">   
-      <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-        <button class="btn btn-logout" ngbDropdownItem routerLink="/materiais">Meus Materiais</button>
-        <button class="btn btn-logout" ngbDropdownItem>Meu Perfil</button>
-        <button class="btn btn-logout" ngbDropdownItem (click)="logOut()">Sair</button>
-      </div>
-    </span>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+  style="background-color: var(--white); display: flex; justify-content: space-between;">
+  <span class="navbar-brand" style="display: flex; flex-direction: row;">
+    <img src="https://i.imgur.com/3onBlhj.png" alt="Repositório de Materiais Instrucionais"
+      style="width: 7em; height: auto; margin-left: 3rem; cursor: pointer;" routerLink="/home">
+    <div class="col-12 col-md-3" style="margin-left: 4rem;">
+      <input type="email" class="form-control" id="floatingInput" placeholder="Pesquisar" style="width: 14.5rem;">
+    </div>
 
-  
+
+  </span>
+
+
+  <span *ngIf="user" class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+    <img class="rounded-circle" ngbDropdownToggle id="navbarDropdown3" [src]="user?.photoUrl"
+      style="width: 2.5rem; height: auto; margin-right: 2rem; cursor: pointer;">
+    <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
+      <button class="btn btn-logout" ngbDropdownItem routerLink="/materiais">Meus Materiais</button>
+      <button class="btn btn-logout" ngbDropdownItem>Meu Perfil</button>
+      <button class="btn btn-logout" ngbDropdownItem (click)="logOut()">Sair</button>
+    </div>
+  </span>
+  <button *ngIf="!user" class="btn btn-logout" routerLink="/login" style="margin-right: 2rem;">Entrar</button>
+</nav>

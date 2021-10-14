@@ -6,13 +6,13 @@
                 <li class="breadcrumb-item" routerLink="/home" style="cursor: pointer;">Início</li>
                 <li class="breadcrumb-item" aria-current="page" routerLink="/materiais" style="cursor: pointer;">
                     Materiais</li>
-                <li class="breadcrumb-item active">Material: {{material.title}}</li>
+                <li class="breadcrumb-item active">Material: {{material.title | uppercase}}</li>
 
             </ol>
         </nav>
     </div>
 
-    <h1>{{material.title}}</h1>
+    <h1>{{material.title | uppercase}}</h1>
     <span *ngFor="let category of material.category" class="badge badge-success"
         style="margin-right: 0.5rem;">{{category.name}}</span>
 
@@ -22,7 +22,7 @@
                 class=" img" alt="..." style="height: 22rem; width: 100%;" > -->
 
             <div class="container"
-                style="background-image: url({{material.image.url}}); background-repeat: no-repeat; background-size:cover; background-position: top; height: 100%">
+                style="background-image: url({{material.image.url}}); background-repeat: no-repeat; background-size:cover; background-position: top; height: 100%; border-radius: 0.2rem;">
 
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="row" *ngIf="material.attatchments">
                 <div class="col">
                     <div class="card-right container"
-                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem;">
+                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem; border-radius: 0.2rem;">
                         <h4 style="margin-bottom: 1rem;">Materiais de apoio</h4>
                         <div class="btn btn-block btn-lg"
                             style="display: flex; align-items: center; justify-content: center;">
@@ -43,7 +43,7 @@
             <div class="row" style="margin-top: 2rem;">
                 <div class="col">
                     <div class="card-right container"
-                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem;">
+                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem; border-radius: 0.2rem;">
                         <h4 style="margin-bottom: 1rem;">Links externos</h4>
                         <div class="btn btn-block btn-lg"
                             style="display: flex; align-items: center; justify-content: center;">
@@ -73,7 +73,8 @@
                         aria-controls="pills-contact" aria-selected="false">Autor</a>
                 </li>
             </ul>
-            <div class="tab-content" id="pills-tabContent"  style="height: 70vh; overflow: auto; padding: 2rem; text-align: justify;">
+            <div class="tab-content" id="pills-tabContent"
+                style="height: 70vh; overflow: auto; padding: 2rem; text-align: justify;">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="cover" style="text-align: justify;" [innerHTML]="material.description">
                     </div>

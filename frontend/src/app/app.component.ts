@@ -33,10 +33,10 @@ export class AppComponent {
           this.loginScreen = false;
         }else if (data.url === "/login") {
           this.loginScreen = true;
-          this.insideSystem = true;
+          this.insideSystem = false;
         }else {
           this.insideSystem = true;
-          this.loginScreen = true;
+          this.loginScreen = false;
         }
       }     
     });

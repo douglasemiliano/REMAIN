@@ -22,14 +22,14 @@ export class MaterialViewComponent implements OnInit {
   public getIdRoute(): void {
     this.route.params.subscribe(data => {
       this.id = data.id;
+      this.incrementView();
     });
   }
 
   public getMaterial(): void{
     this.materialService.getMaterialById(this.id).subscribe(result => {    
-      this.material = result;
-      
-    })
+      this.material = result;   
+    });
   }
 
   public goToExternalLinks(): void{
@@ -37,6 +37,11 @@ export class MaterialViewComponent implements OnInit {
   }
 
   public goToAttatchments(): void{
-   window.open(this.material.attatchments)
+   window.open(this.material.attatchments);
+  }
+
+  public incrementView(): void{
+    this.materialService.incrementViewOnMaterial(this.id).subscribe(data => {
+    });
   }
 }
