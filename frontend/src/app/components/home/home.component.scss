@@ -1,0 +1,97 @@
+.home {
+    margin-top: 6rem
+}
+
+.news {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    h2{
+        margin-left: 1rem;
+        padding-top: 1rem;
+    }
+    .icons {
+        width: 3rem;
+    }
+
+}
+
+.category {
+  margin-top: -2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  h2{
+      margin-left: 1rem;
+      padding-top: 1rem;
+  }
+  .icons {
+      width: 3rem;
+  }
+
+}
+
+@import "~swiper/css";
+@import "~swiper/css/pagination";
+@import "~swiper/css/navigation";
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+
+.swiper-button-next, .swiper-button-prev {
+    color: var(--primary-color)
+  }
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin: 20px auto;
+  margin-top: -1.5rem;
+}
+
+.card{
+  box-shadow: 0 4px 10px -6px #999;
+}
+
+.card-img-top{
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: top;
+   height: 100%;
+}
+
+.card-footer {
+  background-color: var(--primary-white);
+}
+
+
+
+

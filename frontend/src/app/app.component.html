@@ -1,38 +1,69 @@
-
-<div *ngIf="logged"><app-navbar (logoutEmitter)=encerrarSecao($event) [user]="user"></app-navbar></div>
-
+<nav *ngIf="!loginScreen || logged"><app-navbar (logoutEmitter)=encerrarSecao($event) [user]="user"></app-navbar></nav>
 
 
 <div  style="display: flex; flex-direction: row;">
-  <div *ngIf="logged"  [@openClose]="isOpen ? 'open' : 'closed'" class="container-fluid sidebar" id="sidebar">
-    <div style="margin-top: 7rem;">
-      <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
-        <img src="https://i.imgur.com/cWRd9nN.png" class="icons" alt="ícone de explorar">
-        <div class="title">
-          <p class="hide">Explorar!</p>
-        </div>
-      </div>
-
-      <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
-        <img src="https://i.imgur.com/XX9JBUv.png" class="icons" alt="ìcone de categoria">
-        <div class="title">
-          <p class="hide">Categorias</p>
-        </div>
-      </div>
-
-      <div class="col-12 menu-sidebar btn btn-light btn-block" (click)="resizeSidebar()">
-        <img src="https://i.imgur.com/2XCpa5T.png" class="icons" alt="ícone de envios recentes">
-        <div class="title">
-           <p class="hide">Envios recentes</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div style="width: 100%;">
+<app-sidebar [logged]="logged" [insideSystem]="insideSystem"></app-sidebar>
+  <div id="content" style="width: 100%;">
     <router-outlet></router-outlet> 
   </div>
 </div>
 
-  
+<!-- <div class="container">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
 
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 offset-1">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of whats new and exciting from us.</p>
+          <div class="d-flex w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between py-4 my-4 border-top">
+      <p>&copy; 2021 Company, Inc. All rights reserved.</p>
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+</div> -->

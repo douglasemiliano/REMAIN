@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Location } from '@angular/common';
 import { Component, Input, OnChanges, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './components/auth/auth.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { User } from './models/user.model';
@@ -10,27 +10,12 @@ import { User } from './models/user.model';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    trigger('openClose', [
-      // ...
-      state('open', style({
-        width: '20rem',
-      })),
-      state('closed', style({
-        width: '5rem',
-      })),
-      transition('open => closed', [
-        animate('0.1s')
-      ]),
-      transition('closed => open', [
-        animate('0.1s')
-      ]),
-    ]),
-  ],
 })
 export class AppComponent {
   public title: string = 'frontend';
+  public loginScreen: boolean = false;
   public logged: boolean = false;
+  public insideSystem: boolean = false;
   public isOpen: boolean = true;
   public user: User;
 
@@ -38,13 +23,30 @@ export class AppComponent {
               private router: Router) {
             }
 
-  public ngOnInit(): void {
-    this.login();       
+  public ngOnInit(): void {    
+    this.login();     
+
+    this.router.events.subscribe(data => {
+      if (data instanceof NavigationEnd){
+        if ( data.url === "/home"){
+          this.insideSystem = false;
+          this.loginScreen = false;
+        }else if (data.url === "/login") {
+          this.loginScreen = true;
+          this.insideSystem = true;
+        }else {
+          this.insideSystem = true;
+          this.loginScreen = true;
+        }
+      }     
+    });
   }
 
   public encerrarSecao(tipo: boolean): void{
     this.logged = tipo;
+    this.insideSystem = tipo;
     localStorage.clear();
+    this.router.navigate(['home'])
     location.reload();
   }
 
@@ -54,10 +56,7 @@ export class AppComponent {
         this.user = userReturned;
         this.logged = true;
         this.authService.setLoginState(true)
-        console.log(this.authService.isLogged());
-        
-        console.log(userReturned);
-        this.router.navigate(['materiais']);
+        this.router.navigate(['home']);
       });
     } else {
       this.logged = true;
@@ -71,28 +70,5 @@ export class AppComponent {
 
   public setLoginState(): void {
     this.logged = this.authService.isLogged();
-  }
-
-  public resizeSidebar(): void {
-    this.toggle();
-    if (document.getElementById("sidebar")?.style.width === "20rem") {
-      for (let i = 0; i <= document.getElementsByClassName("hide").length; i++) {
-        document.getElementsByClassName("hide").item(i)?.setAttribute("style", "display: none")
-        document.getElementsByClassName("icons").item(i)?.setAttribute("style", "width: 2rem; margin-left: -0.3rem" )
-
-      }
-
-    } else {
-      for (let i = 0; i <= document.getElementsByClassName("hide").length; i++) {
-        document.getElementsByClassName("hide").item(i)?.setAttribute("style", "display: block")
-        document.getElementsByClassName("icons").item(i)?.setAttribute("style", "width: 3rem; margin: 0 0.8rem;" )
-
-
-      }
-    }
-  }
-
-  public toggle() {
-    this.isOpen = !this.isOpen;
   }
 }
