@@ -14,7 +14,7 @@
 
     <h1>{{material.title | uppercase}}</h1>
     <span *ngFor="let category of material.category" class="badge badge-success"
-        style="margin-right: 0.5rem;">{{category.name}}</span>
+        style="margin-right: 0.5rem; cursor: pointer;" [routerLink]="['/categoria', category.id]">{{category.name}}</span>
 
     <div class="row" style="margin-top: 1rem; margin-bottom: 2rem;">
         <div class="col-8">

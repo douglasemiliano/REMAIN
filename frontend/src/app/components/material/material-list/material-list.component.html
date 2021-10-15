@@ -38,11 +38,15 @@
             <div class="card" style="width: 100%; height: 22rem;">
                 <div class="container"
                     style="height: 10rem; background-image: url({{item.image.url}}); background-position: center; background-size: cover;">
+                    <div class="d-flex justify-content-end">
+                        <span class="material-icons trash" (click)="deleteMaterial(item.id)">{{icon}}</span>
+                    </div>
                 </div>
                 <div class="card-body" style="height:2rem">
-                    <h6 class="card-title" style="font-size: 12pt;">{{item.title}}</h6>
+                    <h6 class="card-title" style="font-size: 12pt;">{{item.title | titlecase}}</h6>
+                    <p [innerHTML]="item.description | slice: 0:102">...</p>
                 </div>
-                <div class="card-footer" style="background-color: white; margin-top: 2rem;">
+                <div class="card-footer" style="background-color: white; margin-top: 7rem;">
                     <button class="btn btn-block" [routerLink]="['/materiais', item.id]"
                         style="background-color: var(--primary-color); color: var(--white); font-weight: bold;">Visualizar
                         Conteúdo</button>
@@ -55,7 +59,8 @@
 
 
     <div class="nav justify-content-center" style="padding-top: 0.6rem; font-size: 12pt;">
-        <ngb-pagination [collectionSize]="collectionSize" [pageSize]="12" [(page)]="page"  (pageChange)="onPageChange(page)" aria-label="Default pagination"></ngb-pagination>
+        <ngb-pagination [collectionSize]="collectionSize" [pageSize]="12" [(page)]="page"
+            (pageChange)="onPageChange(page)" aria-label="Default pagination"></ngb-pagination>
     </div>
 
 </div>
