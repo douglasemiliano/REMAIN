@@ -10,10 +10,12 @@ export namespace MaterialUrl {
     export const BASE = "material"
     export const BY_AUTHOR = MaterialUrl.BASE + "/author/"
     export const BY_ID = MaterialUrl.BASE + "/"
+    export const BY_CATEGORY = MaterialUrl.BASE + "/" + "category" + "/"
 }
 
 export namespace CategorylUrl { 
     export const BASE = "category"
+    export const BY_ID = CategorylUrl.BASE + "/"
 }
 
 export namespace ImageUrl {

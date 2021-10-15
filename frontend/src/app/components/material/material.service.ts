@@ -33,6 +33,10 @@ export class MaterialService {
     return this.http.get(SERVER_URL + MaterialUrl.BY_AUTHOR + authorUID + PaginationUrl.PAGE + page)
   }
 
+  public getMaterialsByCategory(categoryId: string | null): Observable<any>{    
+    return this.http.get(SERVER_URL + MaterialUrl.BY_CATEGORY + categoryId)
+  }
+
   public getMaterialsByAuthor(authorUID: string | null): Observable<any>{
     return this.http.get(SERVER_URL + MaterialUrl.BY_AUTHOR + authorUID)
   }
@@ -41,12 +45,20 @@ export class MaterialService {
     return this.http.get(SERVER_URL + MaterialUrl.BY_ID + id);
   }
 
+  public deleteMaterialById(id: number): Observable<any>{
+    return this.http.delete(SERVER_URL + MaterialUrl.BY_ID + id);
+  }
+
   public incrementViewOnMaterial(id: number){
     return this.http.patch(SERVER_URL + MaterialUrl.BY_ID + id, null);
   }
 
   public getCategories(): Observable<any>{
     return this.http.get(SERVER_URL + CategorylUrl.BASE);
+  }
+
+  public getCategoryById(id: string): Observable<any> {
+    return this.http.get(SERVER_URL + CategorylUrl.BY_ID + id);
   }
 
   public uploadImage(multiPartForm: FormData): Observable<any> {
@@ -64,7 +76,7 @@ export class MaterialService {
   public postMaterial(material: any){ 
     return this.http.post(SERVER_URL + MaterialUrl.BASE,material).
     subscribe( () => {
-      this.toastr.success("Material salvo com sucesso", "sucesso")
+      this.toastr.success("Material salvo com sucesso", "Sucesso")
       this.router.navigate(['materiais'])
     , (error: string | undefined) => {
       this.toastr.error(error, "Erro")
@@ -76,7 +88,6 @@ export class MaterialService {
   }
 
   public postAttatchmentOnGoFile(server: string, file: FormData): Observable<any> {
-    console.log(server);
     return this.http.post(`https://${server}.${AttatchmentsUrl.UPLOAD}`, file)
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { MaterialService } from '../material.service';
 
 @Component({
@@ -12,8 +13,9 @@ export class MaterialListComponent implements OnInit {
   public materials: any[];
   public collectionSize: number = 0;
   public authorUID = localStorage.getItem("uid");
+  public icon: string = "delete_outline"
 
-  constructor(private router: Router, private materialService: MaterialService) { }
+  constructor(private router: Router, private materialService: MaterialService, private toastr: ToastrService, ) { }
 
   public ngOnInit(): void {
     this.materialService.getMaterialsByAuthor(this.authorUID).subscribe(data => {
@@ -32,6 +34,15 @@ export class MaterialListComponent implements OnInit {
       if (data.content.length <= 8) {
         document.getElementById("breadcrumb")?.scrollIntoView();
       }  
+    });
+  }
+
+  public deleteMaterial(materialId: number): void {
+    this.materialService.deleteMaterialById(materialId).subscribe(data => {
+      this.toastr.success("Material deletado com sucesso!", "Sucesso")
+      this.ngOnInit();
+    }, erro => {
+      this.toastr.error("Erro", "erro")
     });
   }
 

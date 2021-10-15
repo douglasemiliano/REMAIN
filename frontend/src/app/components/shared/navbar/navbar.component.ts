@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 
@@ -13,6 +14,7 @@ export class NavbarComponent implements OnInit {
   public logged: boolean;
   @Input() public user: any;
   @Output() public logoutEmitter = new EventEmitter<boolean>();
+  public search = new FormControl();
   
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -25,5 +27,10 @@ export class NavbarComponent implements OnInit {
     localStorage.clear();
     this.logoutEmitter.emit(false);
     this.router.navigate(['home'])
+  }
+
+  public onSearch(): void{
+    console.log(this.search.value);
+    this.router.navigate(['materiais','categoria','6'])
   }
 }

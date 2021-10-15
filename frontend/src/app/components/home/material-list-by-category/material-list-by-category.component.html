@@ -1,0 +1,61 @@
+<div class="container" style="margin-top: 6rem;">
+
+    <div style="color:var(--primary-color); font-weight: bolder; margin-top: 6rem;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/home" style="cursor: pointer;">Início</li>
+                <li class="breadcrumb-item active" aria-current="page">Categorias</li>
+            </ol>
+        </nav>
+    </div>
+
+    <h2 *ngIf="category">Listando os resultados da categoria: {{category.name | titlecase}}</h2>
+
+    <div class="row" style="margin-top: 2rem;">
+
+        <div class="col-md-4 col-12">
+
+            <h2>Filtrar por categoria!</h2>
+            <div class="container">
+
+                <div *ngFor="let category of categories" class="form-check" style="margin-bottom: 1rem;">
+                    <input class="form-check-input" type="radio" name="exampleRadios" value="{{category.id}}"
+                        (change)="fetchMaterialsByCategory(category.id); getCategory(category.id)">
+                    <label class="form-check-label">
+                        {{category.name}}
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-sm-8 col-12 ">
+            <div class="container">
+
+                <div class="col-md-12" *ngFor="let material of materials">
+
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <div class="image pull-left" style="background-image: url({{material.image.url}})">
+
+                        </div>
+                        <div class="content pull-left">
+                            <h3>
+                                {{material.title | titlecase}}
+                            </h3>
+                            <div [innerHTML]="material.description | slice: 0:100"></div>
+
+
+                            <div class="d-md-flex justify-content-md-end" style="margin-top: 2rem;">
+                                <button class="btn btn-orange" type="button" (click)="goToMaterial(material.id)">Acessar
+                                    Conteúdo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

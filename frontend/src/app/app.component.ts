@@ -28,7 +28,7 @@ export class AppComponent {
 
     this.router.events.subscribe(data => {
       if (data instanceof NavigationEnd){
-        if ( data.url === "/home"){
+        if ( data.url === "/home" || data.url.includes("/categoria")){
           this.insideSystem = false;
           this.loginScreen = false;
         }else if (data.url === "/login") {

@@ -4,7 +4,7 @@
     <img src="https://i.imgur.com/3onBlhj.png" alt="Repositório de Materiais Instrucionais"
       style="width: 7em; height: auto; margin-left: 3rem; cursor: pointer;" routerLink="/home">
     <div class="col-12 col-md-3" style="margin-left: 4rem;">
-      <input type="email" class="form-control" id="floatingInput" placeholder="Pesquisar" style="width: 14.5rem;">
+      <input type="email" class="form-control" id="floatingInput" placeholder="Pesquisar" style="width: 14.5rem;"[formControl]="search" (keyup.enter)="onSearch()">
     </div>
 
 
