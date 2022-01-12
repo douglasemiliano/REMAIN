@@ -1,0 +1,42 @@
+.nav-item > .active {
+    color: var(--white) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.nav-link {
+    color: var(--primary-color);
+}
+
+.btn{
+    background-color: var(--white);
+    border: 1px solid;
+    border-color: var(--primary-color);
+    a {
+        text-decoration: none;
+        color: var(--primary-color);
+    }
+}
+
+.btn:hover{
+
+    background-color: var(--primary-color);
+    color: var(--white);
+    a {
+        color: var(--white);
+    }
+}
+
+.card-right {
+    background-color: white;
+    box-shadow: 0 8px 20px -6px #999;
+
+    /* the rest of your styling */
+}
+
+h4 {
+    color: var(--primary-color);
+}
+
+h1 {
+    color: gray;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialService } from '../material.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
@@ -30,10 +30,14 @@ export class MaterialEditComponent implements OnInit {
   public fileFormData = new FormData();
   public loading: boolean = false;
   public user: User;
+  public editMode: boolean;
+  public materialId: number;
+  public material: any;
   files: any[] = [];
   public goFileServer: string;
   @ViewChild(NgxDropzoneComponent) dropzone: NgxDropzoneComponent;
   constructor(private router: Router,
+    private route: ActivatedRoute,
     private fb: FormBuilder,
     private materialService: MaterialService,
     private http: HttpClient,
@@ -44,6 +48,7 @@ export class MaterialEditComponent implements OnInit {
       this.createForm();
       this.getUser();
       this.getCategories();
+      this.getMaterialId();
     }
 
   public getUser(): void {
@@ -53,10 +58,45 @@ export class MaterialEditComponent implements OnInit {
     });
   }
 
+  public setEditMode(): void{
+    this.materialId ? this.editMode = true: this.editMode = false;
+  }
+
+  public getMaterialId(): void {
+    this.route.params.subscribe( data => {
+      this.materialId = data.id;
+      this.setEditMode();   
+      this.getMaterial(); 
+    });
+  }
+
+  public getMaterial(): void{
+    this.materialService.getMaterialById(this.materialId).subscribe(data=>{
+      this.material = data;
+      this.setMaterialDataOnFields();
+    });
+  }
+
+  public setMaterialDataOnFields(): void {
+    this.materialForm.get("title")?.setValue(this.material.title);
+    this.materialForm.get("description")?.setValue(this.material.description);
+    this.materialForm.get("image")?.setValue(this.material.image);
+    this.materialForm.get("externalLinks")?.setValue(this.material.externalLinks);
+    this.materialForm.get("category")?.setValue(this.material.category);
+    this.materialForm.get("author")?.setValue(this.material.author);
+    this.materialForm.get("attatchments")?.setValue(this.material.attatchments);
+    this.selectedCategories = new FormControl([this.material.category])
+    this.selectedCategoriesMirror = this.selectedCategories.value;
+    console.log(this.selectedCategories.value);
+    
+    
+    
+  }
+
   public getCategories(): void {
     this.materialService.getCategories().subscribe(data => {
       this.categories = data.content;
-    })
+    });
   }
 
   public goToMaterials(): void{

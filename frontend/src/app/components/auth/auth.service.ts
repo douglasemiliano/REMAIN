@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { AuthUrl, SERVER_URL } from '../shared/utils/url.utils';
 
 
 @Injectable({
@@ -117,17 +118,18 @@ export class AuthService {
   }
 
   public saveUser(user: any):any{
-    return this.http.post('http://localhost:8080/public/user', user)
+    return this.http.post(SERVER_URL + AuthUrl.USER, user)
     .subscribe(userReturned => {
       this.user = userReturned;   
       this.userEmitter.emit(userReturned);     
-      this.toastr.success("Usuário logado com sucesso","Sucesso")      
+      this.toastr.success("Usuário logado com sucesso","Sucesso")   
+      this.router.navigate(["home"])   
     }, error => {
       this.toastr.error(error, "Erro")
     });
   }
 
   public getUserByUid(uid: any): Observable<any> {
-    return this.http.get(`http://localhost:8080/public/user/search=${uid}`);
+    return this.http.get(SERVER_URL + AuthUrl.USER + "/" + AuthUrl.SEARCH + uid);
   }
 }

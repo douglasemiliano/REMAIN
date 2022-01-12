@@ -17,6 +17,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 
 
@@ -42,7 +44,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     MatAutocompleteModule,
     MatIconModule,
     MatSelectModule,
-    AngularEditorModule 
+    AngularEditorModule,
+    NgbModule,
+    TextFieldModule
+    
+    
 
   ],
   exports: [

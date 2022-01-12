@@ -39,23 +39,18 @@ export class HomeComponent implements OnInit {
   }
 
   onSwiper(event: any) {
-    console.log(event);
   }
   onSlideChange() {
-    console.log('slide change');
   }
 
   public fetchMaterials(): void{
     this.materialService.getMaterialsWithSort("createdAt,desc").subscribe(data => {
-      console.log(data.content);
-      
       this.materials = data.content;   
     });
   }
 
   public fetchMostPopulars(): void {
     this.materialService.getMaterialsWithSort("views,desc").subscribe(data => {
-      console.log(data.content);
 
       this.mostPopulars = data.content;   
     });

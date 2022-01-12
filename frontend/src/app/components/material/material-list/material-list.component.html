@@ -39,7 +39,15 @@
                 <div class="container"
                     style="height: 10rem; background-image: url({{item.image.url}}); background-position: center; background-size: cover;">
                     <div class="d-flex justify-content-end">
-                        <span class="material-icons trash" (click)="deleteMaterial(item.id)">{{icon}}</span>
+
+
+                        <div ngbDropdown container="body">
+                            <div class="btn btn-outline material-icons-outlined" ngbDropdownToggle>more_vert</div>
+                            <div ngbDropdownMenu>
+                              <button ngbDropdownItem [routerLink]="['/materiais/editar', item.id]">Editar</button>
+                              <button ngbDropdownItem (click)="deleteMaterial(item.id)">Remover</button>
+                            </div>
+                          </div>
                     </div>
                 </div>
                 <div class="card-body" style="height:2rem">

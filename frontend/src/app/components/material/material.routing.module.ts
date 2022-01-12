@@ -10,6 +10,7 @@ const routes: Routes = [
     { path: '', component: MaterialListComponent, canActivate: [AuthGuard]},
     { path: 'categoria/:id', component: MaterialListByCategoryComponent},
     { path: 'cadastrar', component: MaterialEditComponent, canActivate: [AuthGuard]},
+    { path: 'editar/:id', component: MaterialEditComponent, canActivate: [AuthGuard]},
     { path: 'materiais/:id', component: MaterialViewComponent}
 ]
 

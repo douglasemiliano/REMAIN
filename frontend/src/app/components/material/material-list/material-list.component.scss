@@ -36,3 +36,18 @@ ngb-pagination ::ng-deep a {
 .trash:hover{
   color: var(--primary-color);
 }
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+.dropdown-toggle  {
+  color: var(--white);
+  margin-right: -1rem;
+  font-size: 16pt;
+}
+
+.dropdown-toggle:hover{
+ 
+    color: var(--primary-color);
+}

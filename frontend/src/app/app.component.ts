@@ -1,9 +1,6 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Location } from '@angular/common';
-import { Component, Input, OnChanges, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './components/auth/auth.service';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { User } from './models/user.model';
 
 @Component({
@@ -23,7 +20,7 @@ export class AppComponent {
               private router: Router) {
             }
 
-  public ngOnInit(): void {    
+  public ngOnInit(): void {   
     this.login();     
 
     this.router.events.subscribe(data => {
@@ -51,14 +48,14 @@ export class AppComponent {
   }
 
   public login(): void {
-    if (localStorage.length === 0) {
+    if (localStorage.length === 0) {      
       this.authService.userEmitter.subscribe(userReturned => {
         this.user = userReturned;
         this.logged = true;
         this.authService.setLoginState(true)
         this.router.navigate(['home']);
       });
-    } else {
+    } else {      
       this.logged = true;
       this.authService.setLoginState(true)
       this.authService.getUserByUid(localStorage.getItem('uid')).subscribe(user => {
