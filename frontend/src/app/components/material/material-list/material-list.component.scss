@@ -25,6 +25,29 @@ ngb-pagination ::ng-deep a {
   -webkit-box-shadow: 8px 8px 6px -6px #999;
   -moz-box-shadow: 8px 8px 6px -6px #999;
   box-shadow: 6px 8px 6px -6px #999;
-  
+}
 
+.trash{
+  color: white; 
+  cursor: pointer; 
+  margin-top: 0.5rem;
+
+}
+.trash:hover{
+  color: var(--primary-color);
+}
+
+.dropdown-toggle::after {
+  display:none;
+}
+
+.dropdown-toggle  {
+  color: var(--white);
+  margin-right: -1rem;
+  font-size: 16pt;
+}
+
+.dropdown-toggle:hover{
+ 
+    color: var(--primary-color);
 }

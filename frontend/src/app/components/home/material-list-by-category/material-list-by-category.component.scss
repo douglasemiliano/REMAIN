@@ -1,0 +1,41 @@
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.card {
+  background: #fff;
+  display: inline-block;
+  width: 100%;
+  box-shadow: 0 4px 10px -6px #999;
+}
+
+.image {
+  float: left;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 45%;
+  height: 12rem;
+}
+
+.content {
+  float: left;
+  height: 100%;
+  width: 55%;
+  overflow: hidden;
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+}
+
+.btn-orange {
+  color: var(--primary-color);
+}
+
+.btn-orange:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}

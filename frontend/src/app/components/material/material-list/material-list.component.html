@@ -1,44 +1,91 @@
-
-
-
 <div class="container-fluid" style="padding: 3rem 2rem;">
 
-    <div  style="color:var(--primary-color); font-weight: bolder; margin-top: 3rem;">
+    <div id="breadcrumb" style="color:var(--primary-color); font-weight: bolder; margin-top: 3rem;">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item">Início</li>
-              <li class="breadcrumb-item active" aria-current="page">Materiais</li>
+                <li class="breadcrumb-item" routerLink="/home" style="cursor: pointer;">Início</li>
+                <li class="breadcrumb-item active" aria-current="page">Materiais</li>
             </ol>
-          </nav>
+        </nav>
     </div>
 
 
 
-    <div class="container-fluid" style="padding: 1.2rem 3rem; height: 6rem; border: solid 1px; border-color: rgb(245, 245, 245); margin: 3rem 0; -webkit-box-shadow: 0 8px 6px -6px #999; -moz-box-shadow: 0 8px 6px -6px #999; box-shadow: 0 8px 6px -6px #999; display: flex; justify-content: space-between;">  
+    <div class="container-fluid d-flex align-items-center"
+        style=" height: 5rem; border: solid 1px; border-color: rgb(245, 245, 245); margin: 2rem 0; -webkit-box-shadow: 0 8px 6px -6px #999; -moz-box-shadow: 0 8px 6px -6px #999; box-shadow: 0 8px 6px -6px #999; padding-left: 2rem;">
 
-            <div class="form-floating">
-                <input  type="email" class="form-control form-control-lg" id="floatingInput" placeholder="Ensino Básico">
-                <label for="floatingInput">Pesquisar</label>
+
+        <div class="container-fluid row d-flex justify-content-between">
+
+            <div class="col-12 col-md-3 d-flex justify-content-start">
+                <input type="email" class="form-control" id="floatingInput" placeholder="Ensino Básico"
+                    style="width: 30rem;">
             </div>
 
-            <div class="nav-item">
-                <button class="btn btn-block btn-lg" style=" height:100%; background-color: var(--primary-color); color: var(--white); font-weight: bold;">
+            <div class="col-12 col-md-3 d-flex justify-content-end">
+                <button (click)="goToCreate()" class="btn text-truncate"
+                    style="background-color: var(--primary-color); color: var(--white); width: 30rem;">
                     Compartilhe seu material
                 </button>
+
+                <!-- <button class="btn text-truncate" data-toggle="modal" data-target="#exampleModal"
+                    style="background-color: var(--primary-color); color: var(--white); width: 30rem;">
+                    Compartilhe seu material
+                </button> -->
+
+
+
+                <!-- Modal -->
+                <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header" style="display: flex; justify-content: center;">
+                        <div class="material-icons-outlined" style="color: var(--primary-color); font-size: 60pt;">warning_amber</div>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            <h1 style="font-weight: 500; color: var(--gray);">Atenção!</h1>
+                            <p style="font-size: 12pt;">Esta funcionalidade está indisponível para seu tipo de usuário.</p>
+                        </div>
+                        <div class="modal-footer" style="display: flex; justify-content: center;">
+                          <button type="button" class="btn" data-dismiss="modal" style="background-color: var(--primary-color); color: white; padding: 0.5rem 2rem;">Ok</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+
+
             </div>
+        </div>
     </div>
 
     <div class="row">
-        <div *ngFor="let item of materials" class="col-3" style="margin-bottom: 3rem;">
-            <div class="card" style="width: 23rem; height: 30rem;">
-                <img class="card-img-top" style="height: 12rem; width: auto;" [src]="item.image" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">{{item.title}}</h4>
-                  <p class="card-text" style="font-size: 16pt; margin-top: 1.5rem;">{{item.description}}</p>
+        <div *ngFor="let item of materials" class="col-12 col-lg-3" style="margin-bottom: 3rem;">
+
+            <div class="card" style="width: 100%; height: 22rem;">
+                <div class="container"
+                    style="height: 10rem; background-image: url({{item.image.url}}); background-position: center; background-size: cover;">
+                    <div class="d-flex justify-content-end">
+
+
+                        <div ngbDropdown container="body">
+                            <div class="btn btn-outline material-icons-outlined" ngbDropdownToggle>more_vert</div>
+                            <div ngbDropdownMenu>
+                                <button ngbDropdownItem [routerLink]="['/materiais/editar', item.id]">Editar</button>
+                                <button ngbDropdownItem (click)="deleteMaterial(item.id)">Remover</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer" style="background-color: white;">
-                    <button class="btn btn-block btn-lg" style="background-color: var(--primary-color); color: var(--white); font-weight: bold;">Visualizar Conteúdo</button>
-        
+                <div class="card-body" style="height:2rem">
+                    <h6 class="card-title" style="font-size: 12pt;">{{item.title | titlecase}}</h6>
+                    <p [innerHTML]="item.description | slice: 0:102">...</p>
+                </div>
+                <div class="card-footer" style="background-color: white; margin-top: 7rem;">
+                    <button class="btn btn-block" [routerLink]="['/materiais', item.id]"
+                        style="background-color: var(--primary-color); color: var(--white); font-weight: bold;">Visualizar
+                        Conteúdo</button>
+
                 </div>
             </div>
         </div>
@@ -46,14 +93,9 @@
 
 
 
-        <div class="nav justify-content-center" style="padding-top: 0.6rem; font-size: 16pt;">
-                <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
-        </div>
+    <div class="nav justify-content-center" style="padding-top: 0.6rem; font-size: 12pt;">
+        <ngb-pagination [collectionSize]="collectionSize" [pageSize]="12" [(page)]="page"
+            (pageChange)="onPageChange(page)" aria-label="Default pagination"></ngb-pagination>
+    </div>
 
 </div>
-
-
-
-    
-
-

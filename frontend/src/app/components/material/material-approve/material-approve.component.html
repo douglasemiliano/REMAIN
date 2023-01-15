@@ -1,0 +1,89 @@
+<div class="container-fluid" style="padding: 3rem 2rem;">
+
+    <div id="breadcrumb" style="color:var(--primary-color); font-weight: bolder; margin-top: 3rem;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/home" style="cursor: pointer;">Início</li>
+                <li class="breadcrumb-item active" aria-current="page">Materiais</li>
+            </ol>
+        </nav>
+    </div>
+
+
+
+    <div class="container-fluid d-flex align-items-center"
+        style=" height: 5rem; border: solid 1px; border-color: rgb(245, 245, 245); margin: 2rem 0; -webkit-box-shadow: 0 8px 6px -6px #999; -moz-box-shadow: 0 8px 6px -6px #999; box-shadow: 0 8px 6px -6px #999; padding-left: 2rem;">
+
+        <div class="container-fluid row d-flex justify-content-between">
+            <h2 style="margin-top: 1rem;">Aprovação de materias</h2>
+        </div>
+    </div>
+    <p style="margin-top: -1rem; margin-bottom: 2rem;" class="lead"> Aprove ou recuse os materiais enviados pela comunidade!</p>
+
+
+    <div class="row">
+        <div *ngFor="let item of materials" class="col-12 col-lg-3" style="margin-bottom: 3rem;">
+
+            <div class="card" style="width: 100%;">
+                <div class="container" [routerLink]="['/materiais', item.id]"
+                    style="height: 10rem; background-image: url({{item.image.url}}); background-position: center; background-size: cover; cursor: pointer;">
+                </div>
+                <div class="card-body" style="background-color: white; display: flex; justify-content: space-evenly;">
+                    <button class="btn btn-secondary" [routerLink]="['/materiais', item.id]"
+                        style="font-weight: bold; padding: 0.3rem 2rem;">Deletar</button>
+
+                    <button class="btn" style="font-weight: bold; padding: 0.3rem 2rem; background-color: var(--primary-color); color: white;" data-toggle="modal"
+                        data-target="#modalConfirmation">Aprovar</button>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: flex; justify-content: center;">
+                            <div class="material-icons-outlined" style="color: var(--primary-color); font-size: 60pt;">
+                                warning_amber</div>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            <h1 style="font-weight: 500; color: var(--gray);">Atenção!</h1>
+                            <p style="font-size: 12pt;">Ao aprovar este material, o mesmo ficará visível para toda a comunidade, deseja continuar?</p>
+                        </div>
+                      <div class="modal-footer" style="display: flex; justify-content: space-evenly;">
+                           
+                            <button class="btn btn-secondary"
+                                style="font-weight: bold; padding: 0.3rem 2rem;">Não, cancelar</button>
+
+                            <button class="btn btn-success" style="font-weight: bold; padding: 0.3rem 2rem; background-color: var(--primary-color); color: white;" (click)="approveMaterial(item.id)" data-toggle="modal"
+                            data-target="#modalConfirmation" >Sim, aprovar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class="nav justify-content-center" style="padding-top: 0.6rem; font-size: 12pt;">
+        <ngb-pagination [collectionSize]="collectionSize" [pageSize]="12" [(page)]="page"
+            (pageChange)="onPageChange(page)" aria-label="Default pagination"></ngb-pagination>
+    </div> -->
+
+    </div>

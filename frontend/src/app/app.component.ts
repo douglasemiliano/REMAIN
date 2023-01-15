@@ -1,73 +1,72 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './components/auth/auth.service';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [
-    trigger('openClose', [
-      // ...
-      state('open', style({
-        width:'30rem',
-      })),
-      state('closed', style({
-        width:'8rem',
-      })),
-      transition('open => closed', [
-        animate('0.1s')
-      ]),
-      transition('closed => open', [
-        animate('0.1s')
-      ]),
-    ]),
-  ],
 })
 export class AppComponent {
-  title = 'frontend';
-  logged = false;
-  isOpen = true;
+  public title: string = 'frontend';
+  public loginScreen: boolean = false;
+  public logged: boolean = false;
+  public insideSystem: boolean = false;
+  public isOpen: boolean = true;
+  public user: User;
 
-  constructor(private authService: AuthService, 
-              private router: Router){
-  }
+  constructor(private authService: AuthService,
+              private router: Router) {
+            }
 
-  ngOnInit(): void {
-    this.authService.showNavEmitter.subscribe( data => {
-      this.logged = data;
+  public ngOnInit(): void {  
+    // this.router.navigate(['home']); 
+    this.login();     
+
+    this.router.events.subscribe(data => {
+      if (data instanceof NavigationEnd){
+        if ( data.url === "/home" || data.url.includes("/categoria")){
+          this.insideSystem = false;
+          this.loginScreen = false;
+        }else if (data.url === "/login") {
+          this.loginScreen = true;
+          this.insideSystem = false;
+        }else {
+          this.insideSystem = true;
+          this.loginScreen = false;
+        }
+      }     
     });
-    console.log(this.logged);
-    this.setLoginState()
   }
 
-  setLoginState(): void {
-    this.logged = this.authService.isLogged();
+  public encerrarSecao(tipo: boolean): void{
+    this.logged = tipo;
+    this.insideSystem = tipo;
+    localStorage.clear();
+    this.router.navigate(['home'])
+    location.reload();
   }
 
-  logOut(): void {
-    this.logged = false;
-    this.router.navigate(['login'])
-  }
-
-  resizeSidebar(): void {
-    this.toggle();
-    if(document.getElementById("sidebar")?.style.width === "30rem"){
-      for (let i = 0 ; i <= document.getElementsByClassName("hide").length; i++ ){
-        document.getElementsByClassName("hide").item(i)?.setAttribute("style", "display: none")
-        document.getElementsByClassName("icons").item(i)?.setAttribute("style", "margin-left: 1.25rem")
-        
-      }
-
-    } else {
-      for (let i = 0 ; i <= document.getElementsByClassName("hide").length; i++ ){
-        document.getElementsByClassName("hide").item(i)?.setAttribute("style", "display: block")
-      }
+  public login(): void {
+    if (localStorage.length === 0) {      
+      this.authService.userEmitter.subscribe(userReturned => {
+        this.user = userReturned;
+        this.logged = true;
+        this.authService.setLoginState(true)
+        this.router.navigate(['home']);
+      });
+    } else {      
+      this.logged = true;
+      this.authService.setLoginState(true)
+      this.authService.getUserByUid(localStorage.getItem('uid')).subscribe(user => {
+        this.user = user;
+      });
     }
   }
 
-  toggle() {
-    this.isOpen = !this.isOpen;
+
+  public setLoginState(): void {
+    this.logged = this.authService.isLogged();
   }
 }

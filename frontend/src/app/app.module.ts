@@ -8,21 +8,37 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './components/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './components/shared/shared.module';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './components/auth/auth.service';
+import { HomeComponent } from './components/home/home.component';
+import { HomeModule } from './components/home/home.module';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     NgbModule,
+    SharedModule,
     BrowserAnimationsModule,
 	  ToastrModule.forRoot(),
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    HomeModule
+    
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

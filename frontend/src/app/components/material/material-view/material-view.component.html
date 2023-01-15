@@ -1,0 +1,92 @@
+<div *ngIf="material" class="container" style="margin-top: 7rem;">
+
+    <div style="color:var(--primary-color); font-weight: bolder; margin-top: 3rem;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" routerLink="/home" style="cursor: pointer;">Início</li>
+                <li class="breadcrumb-item" aria-current="page" routerLink="/materiais" style="cursor: pointer;">
+                    Materiais</li>
+                <li class="breadcrumb-item active">Material: {{material.title | uppercase}}</li>
+
+            </ol>
+        </nav>
+    </div>
+
+    <h1>{{material.title | uppercase}}</h1>
+    <span *ngFor="let category of material.category" class="badge badge-success"
+        style="margin-right: 0.5rem; cursor: pointer;" [routerLink]="['/categoria', category.id]">{{category.name}}</span>
+
+    <div class="row" style="margin-top: 1rem; margin-bottom: 2rem;">
+        <div class="col-12 col-md-8" style="margin-bottom: 1rem;">
+            <!-- <img [src]="material.image.url"
+                class=" img" alt="..." style="height: 22rem; width: 100%;" > -->
+
+                
+            <div class="container top-cover"
+                style="background-image: url({{material.image.url}});">
+
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="row">
+                <div class="col">
+                    <div class="card-right container"
+                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem; border-radius: 0.2rem;">
+                        <h4 style="margin-bottom: 1rem;">Materiais de apoio</h4>
+                        <div class="btn btn-block btn-lg"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="margin-right: 0.5rem;">download</span>
+                            <a target="blank" [href]="material.attatchments" [download]="material.title">Baixar conteúdo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 1rem;" *ngIf="material.externalLinks">
+                <div class="col">
+                    <div class="card-right container"
+                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem; border-radius: 0.2rem;">
+                        <h4 style="margin-bottom: 1rem;">Links externos</h4>
+                        <div class="btn btn-block btn-lg"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="margin-right: 0.5rem;">link</span>
+                            <span (click)="goToExternalLinks()">Acessar conteúdo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 1rem;" *ngIf="material.survey">
+                <div class="col">
+                    <div class="card-right container"
+                        style="display: flex; align-items: center; flex-direction: column; justify-content: space-around; padding: 2rem; border-radius: 0.2rem;">
+                        <h4 style="margin-bottom: 1rem;">Avalie este material!</h4>
+                        <div class="btn btn-block btn-lg"
+                            style="display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="margin-right: 0.5rem;">quiz</span>
+                            <span (click)="goToSurvey()">Avaliar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8">
+
+            <button class="btn" style="width: 100%;">
+                Descrição
+                
+            </button>
+        
+            <div class="tab-content" id="pills-tabContent"
+                style="height: 100%; overflow: auto; padding: 2rem; text-align: justify;">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="cover" style="text-align: justify;" [innerHTML]="material.description">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

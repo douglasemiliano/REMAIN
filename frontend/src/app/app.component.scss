@@ -1,22 +1,11 @@
-.navbar {
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
-
-    /* the rest of your styling */
-}
-
-.btn-logout:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
-}
 
 .sidebar {
     -webkit-box-shadow: 8px 8px 6px -6px #999;
     -moz-box-shadow: 8px 8px 6px -6px #999;
     box-shadow: 6px 8px 6px -6px #999;
-    
-
+    position:relative;
+    overflow:hidden;
+    background-color: var(--white);
 }
 
 #btnLeft{
@@ -25,15 +14,15 @@
 }
 
 .menu-sidebar {
-    font-size: 16pt;
+    font-size: 12pt;
     font-weight: bold;
     color: var(--primary-color);
-    padding: 0.5rem 0;
     display: flex;
     justify-content: flex-start;
-
-    p{
-        padding-top: 0.2rem;
+    align-items: center;
+    
+    .title{
+      padding-top: 0.7rem;
     }
     .icons {
         margin: 0 0.8rem;
@@ -45,36 +34,3 @@
     background-color: var(--primary-color);
     color: var(--white);
 }
-
-#nav-lateral {
-    background-color: green;
-    float: left;
-    border-bottom-right-radius: 2px;
-    height:  100vh;
-    overflow: auto;
-  }
-  
-  #nav-lateral a, ul >li {
-    list-style: none;
-    text-decoration: none;
-    background-color: yellow;
-    border-radius: 2px;
-    padding: 5px 5px 5px 5px;
-    /*top left bottom right*/
-  }
-  
-  #nav-lateral ul {
-    margin-right: 20px;
-  }
-  
-  #nav-lateral ul li{
-    margin-top: 10px;
-    margin-right: 10px;
-    width: 150px;
-  }
-
-  :host {
-    display: block;
-    margin-top: 1rem;
-  }
-  

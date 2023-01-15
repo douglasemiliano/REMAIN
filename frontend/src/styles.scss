@@ -3,6 +3,7 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 @import '~ngx-toastr/toastr.css';
+@import 'material-icons/iconfont/material-icons.css';
 
 :root{
     --primary-color: #ff6600;
@@ -10,3 +11,6 @@
     --gray: #808080;
     --font-family: Roboto, Arial, Helvetica, sans-serif;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
